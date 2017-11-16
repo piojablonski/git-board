@@ -1,8 +1,8 @@
-import { connectRoutes, NOT_FOUND } from 'redux-first-router';
-import { combineReducers, createStore, applyMiddleware, compose } from 'redux'
+import { connectRoutes } from 'redux-first-router'
+import { combineReducers, createStore, applyMiddleware } from 'redux'
 import createHistory from 'history/createBrowserHistory'
-import { composeWithDevTools } from 'redux-devtools-extension';
-import { pageReducer } from './reducers/page.reducer';
+import { composeWithDevTools } from 'redux-devtools-extension'
+import { pageReducer } from './reducers/page.reducer'
 
 const history = createHistory()
 

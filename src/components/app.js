@@ -1,10 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Switcher } from './switcher'
 
-
 export class AppComponent extends Component {
-  render() {
+  render () {
     const { page } = this.props
     return <Switcher page={page} />
   }
