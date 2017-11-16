@@ -4,9 +4,15 @@
   "private": true,
   "homepage": "https://piojablonski.github.io/git-board",
   "dependencies": {
+    "history": "^4.7.2",
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
-    "react-scripts": "1.0.17"
+    "react-redux": "^5.0.6",
+    "react-scripts": "1.0.17",
+    "redux": "^3.7.2",
+    "redux-devtools-extension": "^2.13.2",
+    "redux-first-router": "^0.0.16-next",
+    "redux-first-router-link": "^1.4.2"
   },
   "scripts": {
     "start": "react-scripts start",
