@@ -21,3 +21,4 @@ yarn-debug.log*
 yarn-error.log*
 
 cr_frontend_challenge.md
+/src/authkey.js

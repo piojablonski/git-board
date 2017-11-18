@@ -1,10 +1,30 @@
-import axios from 'axios'
 import { issuesActions } from '../../reducers/issues.reducer'
 import { redirect, NOT_FOUND } from 'redux-first-router'
+import { get } from '../../api'
+
+const mapDataToOption = (value, name) => res => res.data.map(l => ({ value: l[value], name: l[name] })) || []
 
 export const boardThunk = async (dispatch, getState) => {
-  const params = getState().location.query
-  axios.get('https://api.github.com/repos/atom/atom/issues', {
+  const { issues: { options, repo, selectedFilters: params } } = getState()
+  const shouldLoadOptions = !options[repo]
+  const getData = get(repo)
+
+  if (shouldLoadOptions) {
+    Promise.all([
+      getData('labels').then(mapDataToOption('id', 'name')),
+      getData('milestones').then(mapDataToOption('id', 'title')),
+      getData('assignees').then(mapDataToOption('id', 'login'))
+    ]).then(([labels, milestones, assignees]) => {
+      const options = ({
+        labels,
+        milestones,
+        assignees
+      })
+      dispatch(issuesActions.receivedOptions({ repo, options }))
+    })
+  }
+
+  getData('issues', {
     params
   }).then(response => {
     if (response.data) {
