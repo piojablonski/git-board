@@ -1,5 +1,5 @@
 import React from 'react'
-import { Board } from './board'
+import { Board } from './board/board'
 import { FourOFour } from './fourOFour'
 
 const components = {

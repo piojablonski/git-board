@@ -2,5 +2,12 @@
   "extends": "standard",
   "rules": {
     "no-unused-vars": "off"
+  },
+  "globals": {
+    "describe": true,
+    "it": true,
+    "jest": true,
+    "expect": true,
+    "test": true
   }
 }

@@ -4,12 +4,15 @@
   "private": true,
   "homepage": "https://piojablonski.github.io/git-board",
   "dependencies": {
+    "axios": "^0.17.1",
     "history": "^4.7.2",
+    "query-string": "^5.0.1",
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
     "react-redux": "^5.0.6",
     "react-scripts": "1.0.17",
     "redux": "^3.7.2",
+    "redux-act": "^1.5.0",
     "redux-devtools-extension": "^2.13.2",
     "redux-first-router": "^0.0.16-next",
     "redux-first-router-link": "^1.4.2"
@@ -23,6 +26,9 @@
     "deploy": "gh-pages -d build"
   },
   "devDependencies": {
+    "enzyme": "^3.2.0",
+    "enzyme-adapter-react-16": "^1.1.0",
+    "enzyme-to-json": "^3.2.2",
     "eslint": "^4.11.0",
     "eslint-config-standard": "^10.2.1",
     "eslint-plugin-import": "^2.8.0",
