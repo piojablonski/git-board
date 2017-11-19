@@ -13,7 +13,8 @@ const initialState = {
     direction: 'desc',
     assignee: undefined,
     labels: undefined,
-    milestone: undefined
+    milestone: undefined,
+    mentioned: undefined
   },
   options: {
     static: {
@@ -57,6 +58,7 @@ export const issuesReducer = createReducer({
     return query ? ({
       ...state,
       selectedFilters: {
+        ...state.selectedFilters,
         ...query
       }
     }) : state

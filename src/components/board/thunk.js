@@ -7,7 +7,7 @@ const sanitizeSelectedFilters = selectedFilters => {
     const value = selectedFilters[key]
     if (Array.isArray(value)) {
       acc[key] = value.join()
-    } else {
+    } else if (value && value !== '') {
       acc[key] = value
     }
     return acc

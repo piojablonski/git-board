@@ -1,6 +1,6 @@
 import React from 'react'
-import { Select, Button } from 'antd'
-import { FilterWrapper } from './styled';
+import { Select, Input, Button } from 'antd'
+import { FilterWrapper } from './styled'
 const { Option } = Select
 
 export const FilterForm = ({ options, selectedFilters, filterChangedHandler, filtersApplyHandler }) => {
@@ -45,6 +45,11 @@ export const FilterForm = ({ options, selectedFilters, filterChangedHandler, fil
         onChange={value => filterChangedHandler(value, 'milestone')} >
         {options.milestones.map(s => <Option key={s.value} value={s.value}>{s.name}</Option>)}
       </Select>
+      <label>mentioned</label>
+      <Input
+        defaultValue={selectedFilters.mentioned}
+        onChange={({ target: { value } }) => filterChangedHandler(value, 'mentioned')}
+      />
       <Button onClick={filtersApplyHandler}>Search</Button>
     </FilterWrapper>
   )

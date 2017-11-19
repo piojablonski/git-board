@@ -34,7 +34,7 @@ export const FilterWrapper = styled.div`
   display: flex;
   flex-direction: column;
   padding: 1rem;
-  > div {
+  > div, input {
     margin-bottom: 1rem;
   }
   > label {
