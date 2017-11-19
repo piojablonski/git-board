@@ -8,6 +8,7 @@ import { FilterForm } from './filterForm'
 import { Table, Tag, Avatar } from 'antd'
 
 const UserItem = ({ user }) => <User><Avatar size='small' src={user.avatar_url} /><span>{user.login}</span></User>
+const dateTimeFormatter = date => new Date(date).toLocaleString()
 
 export const BoardComponent = ({ data, options, selectedFilters, filterChangedHandler, filtersApplyHandler }) => {
   if (!data || !options) {
@@ -25,10 +26,24 @@ export const BoardComponent = ({ data, options, selectedFilters, filterChangedHa
       width: 120,
       key: 'info',
       render: record => (<ColumnInfoWrapper>
-        <header>state:</header>
+        <header>state</header>
         <p>{record.state}</p>
         <header>milestone</header>
         <p>{record.milestone ? record.milestone.title : 'none'}</p>
+        <header>comments</header>
+        <p>{record.comments}</p>
+      </ColumnInfoWrapper>)
+
+    },
+    {
+      title: 'Dates',
+      width: 140,
+      key: 'dates',
+      render: record => (<ColumnInfoWrapper>
+        <header>created at</header>
+        <p>{dateTimeFormatter(record.created_at)}</p>
+        <header>updated at</header>
+        <p>{dateTimeFormatter(record.updated_at)}</p>
       </ColumnInfoWrapper>)
 
     },
@@ -36,9 +51,9 @@ export const BoardComponent = ({ data, options, selectedFilters, filterChangedHa
       title: 'Assignees',
       key: 'assignees',
       render: record => (<ColumnInfoWrapper>
-        <header>author:</header>
+        <header>author</header>
         <UserItem user={record.user} />
-        <header>assignees:</header>
+        <header>assignees</header>
         {record.assignees.length > 0
           ? record.assignees.map(a => <UserItem key={a.id} user={a} />)
           : <div>none</div>
