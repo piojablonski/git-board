@@ -12,8 +12,8 @@ export const optionsSelector = (issuesState) => {
     direction,
     labels,
     milestones,
+    creators: assignees,
     assignees: [].concat(staticAssignees, assignees)
   }
-  console.log('selectOptions', res)
   return res
 }

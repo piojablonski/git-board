@@ -10,7 +10,9 @@ const initialState = {
   selectedFilters: {
     state: 'open',
     sort: 'created',
-    direction: 'desc'
+    direction: 'desc',
+    assignee: '*',
+    labels: undefined
   },
   options: {
     static: {
