@@ -1,5 +1,5 @@
 import React from 'react'
-import { Select, Input, Button, Radio } from 'antd'
+import { Select, Input, Button, Radio, DatePicker } from 'antd'
 import { FilterWrapper } from './styled'
 const { Option } = Select
 const { Group: RadioGroup } = Radio
@@ -60,6 +60,15 @@ export const FilterForm = ({ options, selectedFilters, filterChangedHandler, fil
         onChange={value => filterChangedHandler(value, 'milestone')} >
         {options.milestones.map(s => <Option key={s.value} value={s.value}>{s.name}</Option>)}
       </Select>
+      <label>updated since</label>
+      <DatePicker
+        allowClear
+        showTime
+        format='L LT'
+        value={selectedFilters.since}
+        onChange={(date, dateString) => { filterChangedHandler(date ? date.toISOString() : undefined, 'since') }
+        }
+      />
       <label>mentioned</label>
       <Input
         value={selectedFilters.mentioned}

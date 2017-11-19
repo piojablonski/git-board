@@ -6,10 +6,14 @@ import { App } from './components/app'
 import registerServiceWorker from './registerServiceWorker'
 import { Provider } from 'react-redux'
 import { store } from './storeSetup'
+import { LocaleProvider } from 'antd'
+import enGB from 'antd/lib/locale-provider/en_GB'
 
 ReactDOM.render(
-  <Provider store={store} >
-    <App />
-  </Provider >,
+  <LocaleProvider locale={enGB}>
+    <Provider store={store} >
+      <App />
+    </Provider >
+  </LocaleProvider>,
   document.getElementById('root'))
 registerServiceWorker()

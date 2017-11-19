@@ -1,14 +1,15 @@
 import { issuesActions } from '../../reducers/issues.reducer'
 import React from 'react'
 import { connect } from 'react-redux'
-import { optionsSelector } from './board.selectors'
+import { optionsSelector, selectedFiltersSelector } from './board.selectors'
 import { redirect } from 'redux-first-router'
 import { Sidebar, Wrapper, DataWrapper, TagListWrapper, User, ColumnInfoWrapper } from './styled'
 import { FilterForm } from './filterForm'
 import { Table, Tag, Avatar } from 'antd'
+import moment from 'moment'
 
 const UserItem = ({ user }) => <User><Avatar size='small' src={user.avatar_url} /><span>{user.login}</span></User>
-const dateTimeFormatter = date => new Date(date).toLocaleString()
+const dateTimeFormatter = date => moment(date).format('L LT')
 
 export const BoardComponent = ({ data, options, selectedFilters, filterChangedHandler, filtersApplyHandler }) => {
   if (!data || !options) {
@@ -94,7 +95,7 @@ export const BoardComponent = ({ data, options, selectedFilters, filterChangedHa
 const mapStateToProps = (state) => ({
   data: state.issues.issues,
   options: optionsSelector(state.issues),
-  selectedFilters: state.issues.selectedFilters
+  selectedFilters: selectedFiltersSelector(state.issues)
 })
 const mapDispatchToProps = (dispatch) => ({
   filterChangedHandler: (value, filterKey) => {

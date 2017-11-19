@@ -1,3 +1,15 @@
+import moment from 'moment'
+
+export const selectedFiltersSelector = (issuesState) => {
+  const { selectedFilters: { since, ...sf } } = issuesState
+  console.log(since)
+  const res = {
+    ...sf,
+    since: since ? moment(since) : undefined
+  }
+  return res
+}
+
 export const optionsSelector = (issuesState) => {
   if (!issuesState) {
     return undefined

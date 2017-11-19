@@ -14,7 +14,8 @@ const initialState = {
     assignee: undefined,
     labels: undefined,
     milestone: undefined,
-    mentioned: undefined
+    mentioned: undefined,
+    since: undefined
   },
   options: {
     static: {

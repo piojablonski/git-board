@@ -44,6 +44,14 @@ export const FilterWrapper = styled.div`
       content: ':';
     }
   }
+
+  > .ant-calendar-picker {
+    width: 100% !important;
+    .ant-calendar-picker-clear,
+    .ant-calendar-picker-icon {
+      top: 35%;
+    }
+  }
 `
 
 export const TagListWrapper = styled.div`
