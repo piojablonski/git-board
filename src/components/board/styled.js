@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 const sidebarWidth = '320px'
+const headerHeight = '60px'
 
 export const Wrapper = styled.div`
   display: flex;
@@ -9,6 +10,7 @@ export const Wrapper = styled.div`
   height: 100%;
 `
 export const DataWrapper = styled.div`
+  margin-top: ${headerHeight};
   padding: 20px;
   margin-left: ${sidebarWidth};
 `
@@ -81,9 +83,25 @@ export const ColumnInfoWrapper = styled.div`
 
 export const User = styled.div`
   display: flex;
-  align-items: middle;
+  align-items: center;
   line-height: 24px;
   > span:first-child {
     margin-right: 0.25rem
   }
+`
+
+export const HeaderWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  position: fixed;
+  width: calc(100% - ${sidebarWidth});
+  margin-left: ${sidebarWidth};
+  background-color: gray;
+  height: 50px;
+  > * {
+    margin-right: 0.5rem;
+  }
+
 `

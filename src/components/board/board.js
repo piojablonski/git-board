@@ -1,5 +1,6 @@
 import { issuesActions } from '../../reducers/issues.reducer'
 import React from 'react'
+import { Header } from './header'
 import { connect } from 'react-redux'
 import { optionsSelector, selectedFiltersSelector } from './board.selectors'
 import { redirect } from 'redux-first-router'
@@ -7,6 +8,7 @@ import { Sidebar, Wrapper, DataWrapper, TagListWrapper, User, ColumnInfoWrapper 
 import { FilterForm } from './filterForm'
 import { Table, Tag, Avatar } from 'antd'
 import moment from 'moment'
+import { navigate } from '../../utils/utils'
 
 const UserItem = ({ user }) => <User><Avatar size='small' src={user.avatar_url} /><span>{user.login}</span></User>
 const dateTimeFormatter = date => moment(date).format('L LT')
@@ -72,14 +74,6 @@ export const BoardComponent = ({ data, options, selectedFilters, filterChangedHa
   ]
 
   return <Wrapper>
-    <Sidebar>
-      <h1>Repo</h1>
-      <FilterForm
-        options={options}
-        selectedFilters={selectedFilters}
-        filterChangedHandler={filterChangedHandler}
-        filtersApplyHandler={() => filtersApplyHandler(selectedFilters)} />
-    </Sidebar>
     <DataWrapper>
       <Table
         columns={columns}
@@ -89,8 +83,18 @@ export const BoardComponent = ({ data, options, selectedFilters, filterChangedHa
         expandedRowRender={record => <p>{record.body}</p>}
       />
     </DataWrapper>
+    <Header />
+    <Sidebar>
+      <h1>Repo</h1>
+      <FilterForm
+        options={options}
+        selectedFilters={selectedFilters}
+        filterChangedHandler={filterChangedHandler}
+        filtersApplyHandler={() => filtersApplyHandler(selectedFilters)} />
+    </Sidebar>
   </Wrapper>
 }
+// TODO: filterApplyHAndler should use pure selectedFilters state!!!!
 
 const mapStateToProps = (state) => ({
   data: state.issues.issues,
@@ -102,7 +106,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(issuesActions.filterChanged({ value, filterKey }))
   },
   filtersApplyHandler: query => {
-    dispatch(redirect({ type: 'ISSUES', query }))
+    dispatch(navigate('ISSUES', query))
   }
 })
 

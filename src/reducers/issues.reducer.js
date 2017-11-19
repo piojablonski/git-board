@@ -1,7 +1,7 @@
 import { createAction, createReducer } from 'redux-act'
 
 const receivedOptions = createAction('issues/receivedOptions')
-const receivedData = createAction('issues/receivedData')
+const receivedData = createAction('issues/receivedData', (data, lastPage) => ({data, lastPage}))
 const filterChanged = createAction('issues/filterChanged')
 
 export const issuesActions = { receivedData, receivedOptions, filterChanged }
@@ -15,10 +15,13 @@ const initialState = {
     labels: undefined,
     milestone: undefined,
     mentioned: undefined,
-    since: undefined
+    since: undefined,
+    page: '1',
+    per_page: '20'
   },
   options: {
     static: {
+      perPage: ['20', '40', '60', '80', '100'],
       assignees: [{ value: 'none', name: 'none' }, { value: '*', name: 'any' }],
       milestones: [{ value: 'none', name: 'none' }, { value: '*', name: 'any' }],
       state: [{ value: 'open', name: 'open' }, { value: 'closed', name: 'closed' }, { value: 'all', name: 'all' }],
@@ -30,6 +33,7 @@ const initialState = {
   // gitUser: 'atom',
   gitUser: 'facebookincubator',
   gitRepo: 'create-react-app',
+  lastPage: undefined,
   // facebookincubator/create-react-app/issues
   issues: undefined
 
@@ -38,7 +42,8 @@ const initialState = {
 export const issuesReducer = createReducer({
   [receivedData]: (state, payload) => ({
     ...state,
-    issues: payload
+    issues: payload.data,
+    lastPage: payload.lastPage
   }),
   [receivedOptions]: (state, payload) => ({
     ...state,

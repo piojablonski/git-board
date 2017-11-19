@@ -15,6 +15,22 @@ const sanitizeSelectedFilters = selectedFilters => {
   return res
 }
 
+const readPaginationData = response => {
+  const link = response.headers.link
+  if (!link) {
+    return 1
+  }
+  const linksArr = link.split(',')
+  const lastPage = linksArr.reduce((acc, link) => {
+    const page = link.match(/page=(\d+).*rel="last"$/)
+    if (page && page.length > 0) {
+      return page[1]
+    }
+    return acc
+  }, undefined)
+  return lastPage
+}
+
 export const boardThunk = async (dispatch, getState) => {
   const { issues: { options, gitRepo, gitUser, selectedFilters } } = getState()
   const shouldLoadOptions = !options[gitRepo]
@@ -39,7 +55,8 @@ export const boardThunk = async (dispatch, getState) => {
     params: sanitizeSelectedFilters(selectedFilters)
   }).then(response => {
     if (response.data) {
-      dispatch(issuesActions.receivedData(response.data))
+      const lastPage = readPaginationData(response)
+      dispatch(issuesActions.receivedData(response.data, lastPage || selectedFilters.page))
     } else {
       throw response.error
     }
