@@ -15,6 +15,7 @@ export const FilterForm = ({ options, selectedFilters, filterChangedHandler, fil
       <label>assignee</label>
       <Select placeholder='choose...'
         showSearch
+        allowClear
         defaultValue={selectedFilters.assignee}
         onChange={value => filterChangedHandler(value, 'assignee')} >
         {options.assignees.map(s => <Option key={s.value} value={s.value}>{s.name}</Option>)}
@@ -35,6 +36,14 @@ export const FilterForm = ({ options, selectedFilters, filterChangedHandler, fil
         defaultValue={selectedFilters.labels}
         onChange={value => filterChangedHandler(value, 'labels')} >
         {options.labels.map(s => <Option key={s.value} value={s.name}>{s.name}</Option>)}
+      </Select>
+      <label>milestone</label>
+      <Select placeholder='choose...'
+        showSearch
+        allowClear
+        defaultValue={selectedFilters.milestone}
+        onChange={value => filterChangedHandler(value, 'milestone')} >
+        {options.milestones.map(s => <Option key={s.value} value={s.value}>{s.name}</Option>)}
       </Select>
       <Button onClick={filtersApplyHandler}>Search</Button>
     </FilterWrapper>

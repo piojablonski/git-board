@@ -3,7 +3,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { optionsSelector } from './board.selectors'
 import { redirect } from 'redux-first-router'
-import { Sidebar, Wrapper, DataWrapper, TagListWrapper, User, UserListWrapper } from './styled'
+import { Sidebar, Wrapper, DataWrapper, TagListWrapper, User, ColumnInfoWrapper } from './styled'
 import { FilterForm } from './filterForm'
 import { Table, Tag, Avatar } from 'antd'
 
@@ -20,17 +20,30 @@ export const BoardComponent = ({ data, options, selectedFilters, filterChangedHa
       key: 'title',
       render: record => <a href={record.html_url} target='_blank'>{record.title}</a>
     },
-    { title: 'State', width: 80, dataIndex: 'state', key: 'state' },
+    {
+      title: 'Info',
+      width: 120,
+      key: 'info',
+      render: record => (<ColumnInfoWrapper>
+        <header>state:</header>
+        <p>{record.state}</p>
+        <header>milestone</header>
+        <p>{record.milestone ? record.milestone.title : 'none'}</p>
+      </ColumnInfoWrapper>)
+
+    },
     {
       title: 'Assignees',
-      width: 120,
       key: 'assignees',
-      render: record => (<UserListWrapper>
-        <span>author:</span>
+      render: record => (<ColumnInfoWrapper>
+        <header>author:</header>
         <UserItem user={record.user} />
-        <span>assignees:</span>
-        {record.assignees.map(a => <UserItem key={a.id} user={a} />)}
-      </UserListWrapper >)
+        <header>assignees:</header>
+        {record.assignees.length > 0
+          ? record.assignees.map(a => <UserItem key={a.id} user={a} />)
+          : <div>none</div>
+        }
+      </ColumnInfoWrapper >)
     },
     {
       title: 'Labels',

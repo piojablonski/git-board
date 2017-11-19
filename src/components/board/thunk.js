@@ -1,8 +1,7 @@
 import { issuesActions } from '../../reducers/issues.reducer'
-import { redirect, NOT_FOUND } from 'redux-first-router'
 import { get } from '../../api'
 
-const mapDataToOption = (value, name) => res => res.data.map(l => ({ value: l[value], name: l[name] })) || []
+const mapDataToOption = (value, name) => res => res.data.map(l => ({ value: String(l[value]), name: String(l[name]) })) || []
 const sanitizeSelectedFilters = selectedFilters => {
   const res = Object.keys(selectedFilters).reduce((acc, key) => {
     const value = selectedFilters[key]
@@ -17,14 +16,14 @@ const sanitizeSelectedFilters = selectedFilters => {
 }
 
 export const boardThunk = async (dispatch, getState) => {
-  const { issues: { options, repo, selectedFilters } } = getState()
-  const shouldLoadOptions = !options[repo]
-  const getData = get(repo)
+  const { issues: { options, gitRepo, gitUser, selectedFilters } } = getState()
+  const shouldLoadOptions = !options[gitRepo]
+  const getData = get(gitUser, gitRepo)
 
   if (shouldLoadOptions) {
     Promise.all([
       getData('labels', { params: { per_page: 100 } }).then(mapDataToOption('id', 'name')),
-      getData('milestones', { params: { per_page: 100 } }).then(mapDataToOption('id', 'title')),
+      getData('milestones', { params: { per_page: 100 } }).then(mapDataToOption('number', 'title')),
       getData('assignees', { params: { per_page: 100 } }).then(mapDataToOption('login', 'login'))
     ]).then(([labels, milestones, assignees]) => {
       const options = ({
@@ -32,7 +31,7 @@ export const boardThunk = async (dispatch, getState) => {
         milestones,
         assignees
       })
-      dispatch(issuesActions.receivedOptions({ repo, options }))
+      dispatch(issuesActions.receivedOptions({ gitRepo, options }))
     })
   }
 

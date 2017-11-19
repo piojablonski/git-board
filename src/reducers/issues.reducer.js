@@ -11,18 +11,24 @@ const initialState = {
     state: 'open',
     sort: 'created',
     direction: 'desc',
-    assignee: '*',
-    labels: undefined
+    assignee: undefined,
+    labels: undefined,
+    milestone: undefined
   },
   options: {
     static: {
-      assignees: [{ value: 'none', name: 'none' }, { value: '*', name: 'all' }],
+      assignees: [{ value: 'none', name: 'none' }, { value: '*', name: 'any' }],
+      milestones: [{ value: 'none', name: 'none' }, { value: '*', name: 'any' }],
       state: [{ value: 'open', name: 'open' }, { value: 'closed', name: 'closed' }, { value: 'all', name: 'all' }],
       sort: [{ value: 'created', name: 'created' }, { value: 'updated', name: 'updated' }, { value: 'comments', name: 'comments' }],
       direction: [{ value: 'desc', name: 'desc' }, { value: 'asc', name: 'asc' }]
     }
   },
-  repo: 'atom',
+  // gitRepo: 'atom',
+  // gitUser: 'atom',
+  gitUser: 'facebookincubator',
+  gitRepo: 'create-react-app',
+  // facebookincubator/create-react-app/issues
   issues: undefined
 
 }
@@ -36,7 +42,7 @@ export const issuesReducer = createReducer({
     ...state,
     options: {
       ...state.options,
-      [payload.repo]: payload.options
+      [payload.gitRepo]: payload.options
     }
   }),
   [filterChanged]: (state, payload) => ({

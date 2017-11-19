@@ -54,10 +54,10 @@ export const TagListWrapper = styled.div`
   }
   `
 
-export const UserListWrapper = styled.div`
+export const ColumnInfoWrapper = styled.div`
   dispaly: flex;
   flex-direction: column;
-  > span {
+  > header {
     margin-top:0.15rem;
     font-weight: bold;
   }
