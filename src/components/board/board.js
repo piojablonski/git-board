@@ -9,6 +9,7 @@ import { FilterForm } from './filterForm'
 import { Table, Tag, Avatar, Icon } from 'antd'
 import moment from 'moment'
 import { navigate } from '../../utils/utils'
+import {markdown} from 'markdown'
 
 const UserItem = ({ user }) => <User><Avatar size='small' src={user.avatar_url} /><span>{user.login}</span></User>
 const dateTimeFormatter = date => moment(date).format('L LT')
@@ -74,7 +75,6 @@ export const BoardComponent = (props) => {
         </TagListWrapper>)
     }
   ]
-  console.log('isOpen', props.isSidebarOpened)
   return <Wrapper>
     <DataWrapper>
       <Table
@@ -82,7 +82,7 @@ export const BoardComponent = (props) => {
         dataSource={props.data}
         pagination={false}
         rowKey='id'
-        expandedRowRender={record => <p>{record.body}</p>}
+        expandedRowRender={record => <p dangerouslySetInnerHTML={{ __html: markdown.toHTML(record.body) }}></p>}
         loading={props.isLoading}
       />
     </DataWrapper>

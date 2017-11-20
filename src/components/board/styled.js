@@ -104,6 +104,10 @@ export const DataWrapper = styled.div`
   margin-top: ${headerHeight};
   width: 100%;
   margin-left: ${sidebarWidth};
+  td {
+    word-break: normal !important;
+  }
+
   ${media.tablet`
     margin-left: 0;
     `}
