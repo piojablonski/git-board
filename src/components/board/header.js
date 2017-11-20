@@ -14,7 +14,6 @@ export const HeaderComponent = ({ pagination, pageSizeOptions, filterChangeAndRe
   const executeChangePage = ({ target: { value } }) => {
     filterChangeAndRedirect(selectedFilters, value, 'page')
   }
-  console.log('pagination', pagination)
   return (
     <HeaderWrapper>
       <Button type="primary" disabled={!pagination.hasPrevious} value={pagination.previousPage} onClick={executeChangePage}>
@@ -59,7 +58,6 @@ const paginationInfoSelector = issuesState => {
     nextPage: String(nPage + 1),
     perPage: per_page
   })
-  console.log('paginationSelector', res)
   return res
 }
 

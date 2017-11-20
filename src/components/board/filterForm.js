@@ -5,6 +5,9 @@ const { Option } = Select
 const { Group: RadioGroup } = Radio
 
 export const FilterForm = ({ options, selectedFilters, filterChangedHandler, filtersApplyHandler }) => {
+  if (!options) {
+    return null
+  }
   return (
     <FilterWrapper>
       <label>sort by</label>

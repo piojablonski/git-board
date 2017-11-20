@@ -13,10 +13,7 @@ import { navigate } from '../../utils/utils'
 const UserItem = ({ user }) => <User><Avatar size='small' src={user.avatar_url} /><span>{user.login}</span></User>
 const dateTimeFormatter = date => moment(date).format('L LT')
 
-export const BoardComponent = ({ data, options, selectedFilters, filterChangedHandler, filtersApplyHandler }) => {
-  if (!data || !options) {
-    return null
-  }
+export const BoardComponent = ({ data, options, selectedFilters, filterChangedHandler, filtersApplyHandler, isLoading }) => {
 
   const columns = [
     {
@@ -42,6 +39,7 @@ export const BoardComponent = ({ data, options, selectedFilters, filterChangedHa
       title: 'Dates',
       width: 140,
       key: 'dates',
+      className: 'hide-tablet',
       render: record => (<ColumnInfoWrapper>
         <header>created at</header>
         <p>{dateTimeFormatter(record.created_at)}</p>
@@ -66,6 +64,7 @@ export const BoardComponent = ({ data, options, selectedFilters, filterChangedHa
     {
       title: 'Labels',
       key: 'Labels',
+      className: 'hide-tablet',
       render: record => (
         <TagListWrapper>
           {record.labels.map(l => <Tag key={l.id} color={`#${l.color}`}>{l.name}</Tag>)}
@@ -81,6 +80,7 @@ export const BoardComponent = ({ data, options, selectedFilters, filterChangedHa
         pagination={false}
         rowKey='id'
         expandedRowRender={record => <p>{record.body}</p>}
+        loading={isLoading}
       />
     </DataWrapper>
     <Header />
@@ -99,7 +99,8 @@ export const BoardComponent = ({ data, options, selectedFilters, filterChangedHa
 const mapStateToProps = (state) => ({
   data: state.issues.issues,
   options: optionsSelector(state.issues),
-  selectedFilters: selectedFiltersSelector(state.issues)
+  selectedFilters: selectedFiltersSelector(state.issues),
+  isLoading: state.issues.isLoading
 })
 const mapDispatchToProps = (dispatch) => ({
   filterChangedHandler: (value, filterKey) => {

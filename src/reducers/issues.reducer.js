@@ -34,6 +34,7 @@ const initialState = {
   gitUser: 'facebookincubator',
   gitRepo: 'create-react-app',
   lastPage: undefined,
+  isLoading: true,
   // facebookincubator/create-react-app/issues
   issues: undefined
 
@@ -43,7 +44,8 @@ export const issuesReducer = createReducer({
   [receivedData]: (state, payload) => ({
     ...state,
     issues: payload.data,
-    lastPage: payload.lastPage
+    lastPage: payload.lastPage,
+    isLoading: false
   }),
   [receivedOptions]: (state, payload) => ({
     ...state,
@@ -63,6 +65,7 @@ export const issuesReducer = createReducer({
     const { query } = meta
     return query ? ({
       ...state,
+      isLoading: true,
       selectedFilters: {
         ...state.selectedFilters,
         ...query

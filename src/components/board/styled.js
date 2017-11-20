@@ -1,7 +1,24 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 const sidebarWidth = '320px'
 const headerHeight = '60px'
+
+const sizes = {
+  desktop: 992,
+  tablet: 768,
+  phone: 376
+}
+
+// Iterate through the sizes and create a media template
+const media = Object.keys(sizes).reduce((acc, label) => {
+  acc[label] = (...args) => css`
+  @media (max-width: ${sizes[label] / 16}em) {
+    ${css(...args)}
+  }
+`
+
+  return acc
+}, {})
 
 export const Wrapper = styled.div`
   display: flex;
@@ -13,6 +30,10 @@ export const DataWrapper = styled.div`
   margin-top: ${headerHeight};
   padding: 20px;
   margin-left: ${sidebarWidth};
+
+  .hide-tablet {
+    ${media.tablet`display:none;`}
+  }
 `
 
 export const TableWrapper = styled.div`
