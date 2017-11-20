@@ -16,11 +16,11 @@ export const HeaderComponent = ({ pagination, pageSizeOptions, filterChangeAndRe
   }
   return (
     <HeaderWrapper>
-      <Button type="primary" disabled={!pagination.hasPrevious} value={pagination.previousPage} onClick={executeChangePage}>
+      <Button type="default" disabled={!pagination.hasPrevious} value={pagination.previousPage} onClick={executeChangePage}>
         <Icon type="left" />Previous
       </Button>
       <span>{`${pagination.page} / ${pagination.lastPage}`}</span>
-      <Button type="primary" disabled={!pagination.hasNext} value={pagination.nextPage} onClick={executeChangePage}>
+      <Button type="default" disabled={!pagination.hasNext} value={pagination.nextPage} onClick={executeChangePage}>
         Next<Icon type="right" />
       </Button>
       <Select

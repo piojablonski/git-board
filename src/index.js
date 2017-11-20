@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import './index.css'
+// import './index.css'
+import './styled/global'
 import 'antd/dist/antd.min.css'
 import { App } from './components/app'
 import registerServiceWorker from './registerServiceWorker'

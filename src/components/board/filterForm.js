@@ -77,7 +77,7 @@ export const FilterForm = ({ options, selectedFilters, filterChangedHandler, fil
         value={selectedFilters.mentioned}
         onChange={({ target: { value } }) => filterChangedHandler(value, 'mentioned')}
       />
-      <Button onClick={filtersApplyHandler}>Search</Button>
+      <Button type='primary' onClick={filtersApplyHandler}>Search</Button>
     </FilterWrapper>
   )
 }

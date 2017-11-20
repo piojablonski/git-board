@@ -13,7 +13,7 @@ import { navigate } from '../../utils/utils'
 const UserItem = ({ user }) => <User><Avatar size='small' src={user.avatar_url} /><span>{user.login}</span></User>
 const dateTimeFormatter = date => moment(date).format('L LT')
 
-export const BoardComponent = ({ data, options, selectedFilters, filterChangedHandler, filtersApplyHandler, isLoading }) => {
+export const BoardComponent = ({ data, options, selectedFilters, filterChangedHandler, filtersApplyHandler, isLoading, repoTitle  }) => {
 
   const columns = [
     {
@@ -85,7 +85,7 @@ export const BoardComponent = ({ data, options, selectedFilters, filterChangedHa
     </DataWrapper>
     <Header />
     <Sidebar>
-      <h1>Repo</h1>
+      <h3>{repoTitle}</h3>
       <FilterForm
         options={options}
         selectedFilters={selectedFilters}
@@ -100,7 +100,8 @@ const mapStateToProps = (state) => ({
   data: state.issues.issues,
   options: optionsSelector(state.issues),
   selectedFilters: selectedFiltersSelector(state.issues),
-  isLoading: state.issues.isLoading
+  isLoading: state.issues.isLoading,
+  repoTitle: `${state.issues.gitUser}/${state.issues.gitRepo}`
 })
 const mapDispatchToProps = (dispatch) => ({
   filterChangedHandler: (value, filterKey) => {
