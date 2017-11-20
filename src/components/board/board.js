@@ -6,15 +6,14 @@ import { optionsSelector, selectedFiltersSelector } from './board.selectors'
 import { redirect } from 'redux-first-router'
 import { Sidebar, Wrapper, DataWrapper, TagListWrapper, User, ColumnInfoWrapper } from './styled'
 import { FilterForm } from './filterForm'
-import { Table, Tag, Avatar } from 'antd'
+import { Table, Tag, Avatar, Icon } from 'antd'
 import moment from 'moment'
 import { navigate } from '../../utils/utils'
 
 const UserItem = ({ user }) => <User><Avatar size='small' src={user.avatar_url} /><span>{user.login}</span></User>
 const dateTimeFormatter = date => moment(date).format('L LT')
 
-export const BoardComponent = ({ data, options, selectedFilters, filterChangedHandler, filtersApplyHandler, isLoading, repoTitle  }) => {
-
+export const BoardComponent = (props) => {
   const columns = [
     {
       title: 'Title',
@@ -23,8 +22,9 @@ export const BoardComponent = ({ data, options, selectedFilters, filterChangedHa
     },
     {
       title: 'Info',
-      width: 120,
+      width: 80,
       key: 'info',
+      className: 'hide-phone',
       render: record => (<ColumnInfoWrapper>
         <header>state</header>
         <p>{record.state}</p>
@@ -39,7 +39,7 @@ export const BoardComponent = ({ data, options, selectedFilters, filterChangedHa
       title: 'Dates',
       width: 140,
       key: 'dates',
-      className: 'hide-tablet',
+      className: 'hide-gt-desktop',
       render: record => (<ColumnInfoWrapper>
         <header>created at</header>
         <p>{dateTimeFormatter(record.created_at)}</p>
@@ -51,6 +51,8 @@ export const BoardComponent = ({ data, options, selectedFilters, filterChangedHa
     {
       title: 'Assignees',
       key: 'assignees',
+      width: 120,
+      className: 'hide-phone',
       render: record => (<ColumnInfoWrapper>
         <header>author</header>
         <UserItem user={record.user} />
@@ -64,33 +66,35 @@ export const BoardComponent = ({ data, options, selectedFilters, filterChangedHa
     {
       title: 'Labels',
       key: 'Labels',
-      className: 'hide-tablet',
+      width: 120,
+      className: 'hide-gt-desktop',
       render: record => (
         <TagListWrapper>
           {record.labels.map(l => <Tag key={l.id} color={`#${l.color}`}>{l.name}</Tag>)}
         </TagListWrapper>)
     }
   ]
-
+  console.log('isOpen', props.isSidebarOpened)
   return <Wrapper>
     <DataWrapper>
       <Table
         columns={columns}
-        dataSource={data}
+        dataSource={props.data}
         pagination={false}
         rowKey='id'
         expandedRowRender={record => <p>{record.body}</p>}
-        loading={isLoading}
+        loading={props.isLoading}
       />
     </DataWrapper>
     <Header />
-    <Sidebar>
-      <h3>{repoTitle}</h3>
+    <Sidebar isOpened={props.isSidebarOpened} >
+      <Icon className='button-close' type='close' onClick={props.toggleSidebar} />
+      <h3>{props.repoTitle}</h3>
       <FilterForm
-        options={options}
-        selectedFilters={selectedFilters}
-        filterChangedHandler={filterChangedHandler}
-        filtersApplyHandler={() => filtersApplyHandler(selectedFilters)} />
+        options={props.options}
+        selectedFilters={props.selectedFilters}
+        filterChangedHandler={props.filterChangedHandler}
+        filtersApplyHandler={() => props.filtersApplyHandler(props.selectedFilters)} />
     </Sidebar>
   </Wrapper>
 }
@@ -101,6 +105,7 @@ const mapStateToProps = (state) => ({
   options: optionsSelector(state.issues),
   selectedFilters: selectedFiltersSelector(state.issues),
   isLoading: state.issues.isLoading,
+  isSidebarOpened: state.issues.isSidebarOpened,
   repoTitle: `${state.issues.gitUser}/${state.issues.gitRepo}`
 })
 const mapDispatchToProps = (dispatch) => ({
@@ -109,7 +114,8 @@ const mapDispatchToProps = (dispatch) => ({
   },
   filtersApplyHandler: query => {
     dispatch(navigate('ISSUES', query))
-  }
+  },
+  toggleSidebar: () => { dispatch(issuesActions.toggleSidebar()) }
 })
 
 export const Board = connect(mapStateToProps, mapDispatchToProps)(BoardComponent)

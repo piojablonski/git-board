@@ -17,7 +17,7 @@ const headerHeight = '60px'
 const sizes = {
   desktop: 992,
   tablet: 768,
-  phone: 376
+  phone: 414
 }
 
 // Iterate through the sizes and create a media template
@@ -36,7 +36,14 @@ export const Wrapper = styled.div`
   flex-direction: row;
   align-items: stretch;
   height: 100%;
-  background-color: ${gray1};
+  .ant-table-wrapper {
+    padding: 20px;
+    background-color: ${gray1};
+  ${media.tablet`
+    padding-left: 0;
+    padding-right: 0;
+    `}
+  }
 `
 export const Sidebar = styled.div`
   display: flex;
@@ -48,10 +55,23 @@ export const Sidebar = styled.div`
   position: fixed;
   padding-top: 1rem;
 
+  .button-close {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    display: none;
+  }
+
+  ${media.tablet`
+    display: ${props => props.isOpened ? 'flex' : 'none'};
+    .button-close {
+      display: block;
+    }
+  `}
+
   > h3 {
     margin-left: 1rem;
   }
-
 `
 export const HeaderWrapper = styled.div`
   display: flex;
@@ -59,21 +79,39 @@ export const HeaderWrapper = styled.div`
   align-items: center;
   justify-content: flex-end;
   position: fixed;
-  width: calc(100% - ${sidebarWidth});
-  margin-left: ${sidebarWidth};
+  /* width: calc(100% - ${sidebarWidth}); */
+  width: 100%;
+  /* margin-left: ${sidebarWidth}; */
+
+  
+
   background-color: ${gray3};
   height: 50px;
   > * {
     margin-right: 0.5rem;
   }
+
+  .menu-icon {
+    font-size: 1.5em;
+    position: absolute;
+    left: 0.75rem;
+    ${media.tablet`
+      display: ${props => props.isSidebarOpened ? 'none' : 'block'};
+    `}
+  }
 `
 export const DataWrapper = styled.div`
   margin-top: ${headerHeight};
-  padding: 20px;
   width: 100%;
   margin-left: ${sidebarWidth};
-  .hide-tablet {
-    ${media.tablet`display:none;`}
+  ${media.tablet`
+    margin-left: 0;
+    `}
+  .hide-gt-desktop {
+    ${media.desktop`display:none;`}
+  }
+  .hide-phone {
+    ${media.phone`display:none;`}
   }
 `
 export const FilterWrapper = styled.div`
@@ -108,6 +146,7 @@ export const FilterWrapper = styled.div`
 export const TagListWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
+  max-width:140px;
   > * {
     margin-bottom: 0.25rem
   }

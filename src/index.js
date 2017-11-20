@@ -18,3 +18,13 @@ ReactDOM.render(
   </LocaleProvider>,
   document.getElementById('root'))
 registerServiceWorker()
+
+if (module.hot) {
+  module.hot.accept('./components/app', () => {
+    const NextApp = require('./components/app').default
+    ReactDOM.render(
+      <NextApp />,
+      document.getElementById('root')
+    )
+  })
+}

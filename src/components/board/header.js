@@ -7,26 +7,28 @@ import { Button, Select, Icon } from 'antd'
 import { navigate } from '../../utils/utils'
 const { Option } = Select
 
-export const HeaderComponent = ({ pagination, pageSizeOptions, filterChangeAndRedirect, selectedFilters }) => {
+export const HeaderComponent = ({ pagination, ...props }) => {
   const executeChange = (key) => (value) => {
-    filterChangeAndRedirect(selectedFilters, value, 'per_page', { page: 1 })
+    props.filterChangeAndRedirect(props.selectedFilters, value, 'per_page', { page: 1 })
   }
   const executeChangePage = ({ target: { value } }) => {
-    filterChangeAndRedirect(selectedFilters, value, 'page')
+    props.filterChangeAndRedirect(props.selectedFilters, value, 'page')
   }
+
   return (
-    <HeaderWrapper>
+    <HeaderWrapper isSidebarOpened={props.isSidebarOpened}>
+      <Icon type='menu-unfold' onClick={props.toggleSidebar} className='menu-icon' />
       <Button type="default" disabled={!pagination.hasPrevious} value={pagination.previousPage} onClick={executeChangePage}>
-        <Icon type="left" />Previous
+        <Icon type="left" />Prev
       </Button>
-      <span>{`${pagination.page} / ${pagination.lastPage}`}</span>
+      <span>{`${pagination.page} / ${pagination.lastPage || ''}`}</span>
       <Button type="default" disabled={!pagination.hasNext} value={pagination.nextPage} onClick={executeChangePage}>
         Next<Icon type="right" />
       </Button>
       <Select
         value={pagination.perPage}
         onChange={executeChange('per_page')} >
-        {pageSizeOptions.map(p => <Option key={p} value={p}>{p}</Option>)}
+        {props.pageSizeOptions.map(p => <Option key={p} value={p}>{p}</Option>)}
       </Select>
     </HeaderWrapper>
   )
@@ -35,13 +37,15 @@ export const HeaderComponent = ({ pagination, pageSizeOptions, filterChangeAndRe
 const mapStateToProps = (state) => ({
   pageSizeOptions: state.issues.options.static.perPage,
   pagination: paginationInfoSelector(state.issues),
-  selectedFilters: state.issues.selectedFilters
+  selectedFilters: state.issues.selectedFilters,
+  isSidebarOpened: state.issues.isSidebarOpened
 
 })
 const mapDispatchToProps = (dispatch) => ({
   filterChangeAndRedirect: (query, value, filterKey, extraValues = {}) => {
     dispatch(navigate('ISSUES', { ...query, ...extraValues, [filterKey]: value }))
-  }
+  },
+  toggleSidebar: () => { dispatch(issuesActions.toggleSidebar()) }
 })
 
 const paginationInfoSelector = issuesState => {
