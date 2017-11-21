@@ -94,16 +94,16 @@ export const BoardComponent = (props) => {
         options={props.options}
         selectedFilters={props.selectedFilters}
         filterChangedHandler={props.filterChangedHandler}
-        filtersApplyHandler={() => props.filtersApplyHandler(props.selectedFilters)} />
+        filtersApplyHandler={() => props.filtersApplyHandler(props.query)} />
     </Sidebar>
   </Wrapper>
 }
-// TODO: filterApplyHAndler should use pure selectedFilters state!!!!
 
 const mapStateToProps = (state) => ({
   data: state.issues.issues,
   options: optionsSelector(state.issues),
   selectedFilters: selectedFiltersSelector(state.issues),
+  query: state.issues.selectedFilters,
   isLoading: state.issues.isLoading,
   isSidebarOpened: state.issues.isSidebarOpened,
   repoTitle: `${state.issues.gitUser}/${state.issues.gitRepo}`

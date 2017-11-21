@@ -12,10 +12,9 @@ const history = createHashHistory()
 
 const routesMap = {
   ISSUES: {
-    path: '/issues',
+    path: '/',
     thunk: boardThunk
-  },
-  DEFAULT: '/'
+  }
 }
 
 const { reducer, middleware, enhancer } = connectRoutes(history, routesMap, {

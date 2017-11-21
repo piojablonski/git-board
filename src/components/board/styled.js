@@ -49,8 +49,10 @@ export const Sidebar = styled.div`
   display: flex;
   flex-direction: column;
   width: ${sidebarWidth};
-  height: 100vh;
-  overflow: auto;
+  top: 0;
+  bottom: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
   background-color: ${gray5};
   position: fixed;
   padding-top: 1rem;
