@@ -12,7 +12,7 @@
 ## Data flow
 The application uses Flow/Redux data architecture. Firstly, the router (redux-first-router) dispatches the initial Router action related to the requested url. The Redux "Page" and the Redux "Issues" states get updated. Based on the "Page" state, the Switcher component renders an appropriate UI component and executes a respective "thunk" function. The latter fetches the data and dispatches actions to populate the "Issues" state with query parameters. The UI components are connected to the Redux state thanks to which they get updated when the "Issues" state gets changed. When a user applies a new filter, an UI component dispatches a Router action. Then, the whole flow starts again. 
 
-![Minion](https://code2flow.com/3l0mSs.svg)
+![Minion](https://code2flow.com/6130SS.svg)
 
 ## Filters
 The whole filtering is done through the GitHub api. There is no client side data processing. I think it is a good practice to delegate as many computing intensive tasks as possible to a backend as long as the delgating doesn’t limit the app functionality. 
@@ -27,7 +27,7 @@ All layout positioning styles have been developed by me. Table and input compone
 In order to present the proposed test strategy, I have written 1) the unit tests for the "thunk" function and 2) the Snapshot and Enzyme UI tests for one of the UI components. 
 
 ## Improvements
-+ The Antd library doesn't fully support touch devices. Thus a different library eg. Material-UI next could be a better choice.
++ The Antd library doesn't fully support touch devices. Thus, a different library e.g. Material-UI next could be a better choice.
 
 + I have wrongly assumed that it is easy to fetch all the dropdown list options (milestones, assignees, labels) using the GitHub api. Apparently api responses are limited to max. 100 items per request. To improve this, I can either use more queries or implement search inputs with the lazy loading. 
 
