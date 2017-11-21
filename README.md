@@ -3,11 +3,11 @@
 [Demo](https://piojablonski.github.io/git-board)
 ## Usage
 
-+ clone github repository `git clone https://github.com/piojablonski/git-board.git`
-+ go to dictionary `cd git-board`
-+ install yarn `npm install -g yarn`
-+ install dependencies `yarn`
-+ run development server `yarn start`
++ clone the github repository `git clone https://github.com/piojablonski/git-board.git`
++ go to the dictionary `cd git-board`
++ install Yarn `npm install -g yarn`
++ install the dependencies `yarn`
++ run the development server `yarn start`
 
 ## Data flow
 The application uses Flow/Redux data architecture. At first router (redux-first-router) dispatches the initial Router action related to requested url. Redux "Page" and "Issues" states update. Base on an "Page" state, Switcher component renders an appropriate UI component and executes respective "thunk" function. The latter fetches the data and dispatches actions to populate the "Issues" state with a query parameters. The UI components are connected so they update when the "Issues" state changes. When an user applies new filter, an UI component dispatches an Router action. The whole flow starts over. 
