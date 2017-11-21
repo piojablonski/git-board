@@ -24,7 +24,9 @@ I have chosen ["Styled Components"](https://www.styled-components.com/) as a css
 All layout positioning styles have been developed by me. Table and input components come from the ["antd"](https://ant.design/) library. The design of the app is responsive and has been tested on Safari (macOS, iOS), Chrome (macOS, Android) and Firefox. 
 
 ## Tests
-In order to present the proposed test strategy, I have written the unit tests for the "thunk" function and the Snapshot and Enzyme UI tests for one the UI components. 
+In order to present the proposed test strategy, I have written the 
+1. unit tests for the "thunk" function
+2. the Snapshot and Enzyme UI tests for one of the UI components. 
 
 ## Improvements
 + Antd library is not supporting correctly touch devices.
