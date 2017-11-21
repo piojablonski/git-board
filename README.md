@@ -10,7 +10,7 @@
 + run the development server `yarn start`
 
 ## Data flow
-The application uses Flow/Redux data architecture. At first router (redux-first-router) dispatches the initial Router action related to requested url. Redux "Page" and "Issues" states update. Base on an "Page" state, Switcher component renders an appropriate UI component and executes respective "thunk" function. The latter fetches the data and dispatches actions to populate the "Issues" state with a query parameters. The UI components are connected so they update when the "Issues" state changes. When an user applies new filter, an UI component dispatches an Router action. The whole flow starts over. 
+The application uses Flow/Redux data architecture. Firstly, the router (redux-first-router) dispatches the initial Router action related to the requested url. The Redux "Page" and the Redux "Issues" states get updated. Based on the "Page" state, the Switcher component renders an appropriate UI component and executes a respective "thunk" function. The latter fetches the data and dispatches actions to populate the "Issues" state with query parameters. The UI components are connected to the Redux state thanks to witch they get updated when the "Issues" state gets changed. When a user applies a new filter, an UI component dispatches a Router action. Then, the whole flow starts again. 
 
 ![Minion](https://code2flow.com/3l0mSs.svg)
 
