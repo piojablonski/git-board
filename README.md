@@ -15,11 +15,13 @@ The application uses Flow/Redux data architecture. Firstly, the router (redux-fi
 ![Minion](https://code2flow.com/3l0mSs.svg)
 
 ## Filters
-The whole filtering is done through the GitHub api. There is no client side data processing. I think it is a good practice to delegate as many of computing intensive tasks as possible to a backend as long as the delgating doesn’t limit the app functionality. 
+The whole filtering is done through the GitHub api. There is no client side data processing. I think it is a good practice to delegate as many computing intensive tasks as possible to a backend as long as the delgating doesn’t limit the app functionality. 
 
-Url query parameters are kept in the "ISSUES" state in its original shape and are subsequently used to fetch the data from api without any processing. This mechanism ensures that the architecture can be easily reused with a different api endpoint.
+Url query parameters are kept in the "ISSUES" state in its original shape and are subsequently used to fetch the data from the api without any processing. This mechanism ensures that the architecture can be easily reused with a different api endpoint.
 ## Styles
-I choose ["Styled Components"](https://www.styled-components.com/) as an css preprocessor. I was eager to test it as it claims to provide all css capabilities and more transparent integration with react components. All layout positioning styles are done by me. Table and input components comes from ["antd"](https://ant.design/) library. Design is responsive and tested on Safari (macOS, iOS), Chrome (macOS, Android) and Firefox. 
+I have chosen ["Styled Components"](https://www.styled-components.com/) as a css preprocessor. I was eager to test this library as its authors claim that the library provide all css capabilities and more transparent integration with react components.
+
+All layout positioning styles have been developed by me. Table and input components come from the ["antd"](https://ant.design/) library. The design of the app is responsive and has been tested on Safari (macOS, iOS), Chrome (macOS, Android) and Firefox. 
 
 ## Tests
 I provided unit tests for "thunk", snapshot and enzyme UI tests for one components. in order to present proposed  including unit tests, snapshot tests and Enzyme render tests.
