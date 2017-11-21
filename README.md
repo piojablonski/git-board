@@ -27,7 +27,7 @@ All layout positioning styles have been developed by me. Table and input compone
 In order to present the proposed test strategy, I have written 1) the unit tests for the "thunk" function and 2) the Snapshot and Enzyme UI tests for one of the UI components. 
 
 ## Improvements
-+ The Antd library is doesn't fully support touch devices.
++ The Antd library doesn't fully support touch devices. Thus a different library eg. Material-UI next could be a better choice.
 
 + I have wrongly assumed that it is easy to fetch all the dropdown list options (milestones, assignees, labels) using the GitHub api. Apparently api responses are limited to max. 100 items per request. To improve this, I can either use more queries or implement search inputs with the lazy loading. 
 
