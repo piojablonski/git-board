@@ -12,7 +12,7 @@
 ## Data flow
 The application uses Flow/Redux data architecture. Firstly, the router (redux-first-router) dispatches the initial Router action related to the requested url. The Redux "Page" and the Redux "Issues" states get updated. Based on the "Page" state, the Switcher component renders an appropriate UI component and executes a respective "thunk" function. The latter fetches the data and dispatches actions to populate the "Issues" state with query parameters. The UI components are connected to the Redux state thanks to which they get updated when the "Issues" state gets changed. When a user applies a new filter, an UI component dispatches a Router action. Then, the whole flow starts again. 
 
-![Minion](https://code2flow.com/6130SS.svg)
+![Minion](https://code2flow.com/inwEo5.svg)
 
 ## Filters
 The whole filtering is done through the GitHub api. There is no client side data processing. I think it is a good practice to delegate as many computing intensive tasks as possible to a backend as long as the delgating doesn’t limit the app functionality. 
