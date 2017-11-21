@@ -24,14 +24,12 @@ I have chosen ["Styled Components"](https://www.styled-components.com/) as a css
 All layout positioning styles have been developed by me. Table and input components come from the ["antd"](https://ant.design/) library. The design of the app is responsive and has been tested on Safari (macOS, iOS), Chrome (macOS, Android) and Firefox. 
 
 ## Tests
-In order to present the proposed test strategy, I have written the 
-1. unit tests for the "thunk" function
-2. the Snapshot and Enzyme UI tests for one of the UI components. 
+In order to present the proposed test strategy, I have written 1) the unit tests for the "thunk" function and 2) the Snapshot and Enzyme UI tests for one of the UI components. 
 
 ## Improvements
-+ Antd library is not supporting correctly touch devices.
++ The Antd library is doesn't fully support touch devices.
 
-+ I assumed incorrectly that it is easily to fetch all dropdown list options (milestones, assignees, labels) using the Git api. Apparently api responses are limited to max 100 items per request. To improve this I can either send more queries on page load or implement search inputs with lazy loading. 
++ I have wrongly assumed that it is easy to fetch all the dropdown list options (milestones, assignees, labels) using the GitHub api. Apparently api responses are limited to max. 100 items per request. To improve this, I can either use more queries or implement search inputs with the lazy loading. 
 
-+ Use of [Reselect](https://github.com/reactjs/reselect) library for selectors.
++ I could possibly use the [Reselect](https://github.com/reactjs/reselect) library for selectors because this would improve the overall performance.
 
