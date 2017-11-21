@@ -36,12 +36,13 @@ export const Wrapper = styled.div`
   flex-direction: row;
   align-items: stretch;
   height: 100%;
+
   .ant-table-wrapper {
     padding: 20px;
     background-color: ${gray1};
-  ${media.tablet`
-    padding-left: 0;
-    padding-right: 0;
+    ${media.tablet`
+      padding-left: 0;
+      padding-right: 0;
     `}
   }
 `
@@ -81,14 +82,10 @@ export const HeaderWrapper = styled.div`
   align-items: center;
   justify-content: flex-end;
   position: fixed;
-  /* width: calc(100% - ${sidebarWidth}); */
   width: 100%;
-  /* margin-left: ${sidebarWidth}; */
-
-  
-
   background-color: ${gray3};
   height: 50px;
+
   > * {
     margin-right: 0.5rem;
   }
@@ -106,6 +103,7 @@ export const DataWrapper = styled.div`
   margin-top: ${headerHeight};
   width: 100%;
   margin-left: ${sidebarWidth};
+
   td {
     word-break: normal !important;
   }
@@ -113,9 +111,11 @@ export const DataWrapper = styled.div`
   ${media.tablet`
     margin-left: 0;
     `}
+
   .hide-gt-desktop {
     ${media.desktop`display:none;`}
   }
+
   .hide-phone {
     ${media.phone`display:none;`}
   }
@@ -124,17 +124,22 @@ export const FilterWrapper = styled.div`
   display: flex;
   flex-direction: column;
   padding: 1rem;
-  padding-bottom:20px;
-  > div, input {
+  padding-bottom: 20px;
+
+  > div,
+  input {
     margin-bottom: 1rem;
   }
+
   > label {
-    margin-bottom: .15rem;
-    margin-left: .15rem;
-    &:after {
+    margin-bottom: 0.15rem;
+    margin-left: 0.15rem;
+
+    &::after {
       content: ':';
     }
   }
+
   > button {
     flex: 0 0 auto;
     margin-bottom: 20px;
@@ -142,6 +147,7 @@ export const FilterWrapper = styled.div`
 
   > .ant-calendar-picker {
     width: 100% !important;
+
     .ant-calendar-picker-clear,
     .ant-calendar-picker-icon {
       top: 35%;
@@ -152,23 +158,27 @@ export const FilterWrapper = styled.div`
 export const TagListWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
-  max-width:140px;
+  max-width: 140px;
+
   > * {
-    margin-bottom: 0.25rem
+    margin-bottom: 0.25rem;
   }
-  `
+`
 
 export const ColumnInfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
+
   > header {
-    margin-top:0.15rem;
+    margin-top: 0.15rem;
     font-size: 0.75em;
     font-weight: normal;
-    &:after {
+
+    &::after {
       content: ':';
     }
   }
+
   * {
     margin-bottom: 0.25rem;
     font-weight: bold;
@@ -179,7 +189,8 @@ export const User = styled.div`
   display: flex;
   align-items: center;
   line-height: 24px;
+
   > span:first-child {
-    margin-right: 0.25rem
+    margin-right: 0.25rem;
   }
 `
