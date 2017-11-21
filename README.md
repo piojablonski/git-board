@@ -19,12 +19,12 @@ The whole filtering is done through the GitHub api. There is no client side data
 
 Url query parameters are kept in the "ISSUES" state in its original shape and are subsequently used to fetch the data from the api without any processing. This mechanism ensures that the architecture can be easily reused with a different api endpoint.
 ## Styles
-I have chosen ["Styled Components"](https://www.styled-components.com/) as a css preprocessor. I was eager to test this library as its authors claim that the library provide all css capabilities and more transparent integration with react components.
+I have chosen ["Styled Components"](https://www.styled-components.com/) as a css preprocessor. I was eager to test this library as its authors claim that their library provides all the css capabilities and more transparent integration with react components.
 
 All layout positioning styles have been developed by me. Table and input components come from the ["antd"](https://ant.design/) library. The design of the app is responsive and has been tested on Safari (macOS, iOS), Chrome (macOS, Android) and Firefox. 
 
 ## Tests
-I provided unit tests for "thunk", snapshot and enzyme UI tests for one components. in order to present proposed  including unit tests, snapshot tests and Enzyme render tests.
+In order to present the proposed test strategy, I have written the unit tests for the "thunk" function and the Snapshot and Enzyme UI tests for one the UI components. 
 
 ## Improvements
 + Antd library is not supporting correctly touch devices.
