@@ -1,46 +1,17 @@
 import styled, { css } from 'styled-components'
+import * as vars from '../../styled/variables'
 
-const gray1 = '#fbfbfb'
-const gray2 = '#f7f7f7'
-const gray3 = '#f5f5f5'
-const gray4 = '#e9e9e9'
-const gray5 = '#d9d9d9'
-const gray6 = '#bfbfbf'
-const gray7 = '#919191'
-const gray8 = '#5a5a5a'
-const gray9 = '#404040'
-const gray10 = '#222222'
-
-const sidebarWidth = '320px'
-const headerHeight = '60px'
-
-const sizes = {
-  desktop: 992,
-  tablet: 768,
-  phone: 414
-}
-
-// Iterate through the sizes and create a media template
-const media = Object.keys(sizes).reduce((acc, label) => {
-  acc[label] = (...args) => css`
-  @media (max-width: ${sizes[label] / 16}em) {
-    ${css(...args)}
-  }
-`
-
-  return acc
-}, {})
-
-export const Wrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
+export const ContentWrapper = styled.div`
+  display: block;
   height: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
 
   .ant-table-wrapper {
     padding: 20px;
-    background-color: ${gray1};
-    ${media.tablet`
+    background-color: ${vars.gray1};
+    ${vars.media.tablet`
       padding-left: 0;
       padding-right: 0;
     `}
@@ -49,23 +20,26 @@ export const Wrapper = styled.div`
 export const Sidebar = styled.div`
   display: flex;
   flex-direction: column;
-  width: ${sidebarWidth};
+  width: ${vars.sidebarWidth};
   top: 0;
   bottom: 0;
   overflow-y: auto;
   overflow-x: hidden;
-  background-color: ${gray5};
+  -webkit-overflow-scrolling: touch;
+  background-color: ${vars.gray5};
   position: fixed;
   padding-top: 1rem;
+  z-index: 2;
 
   .button-close {
     position: absolute;
     top: 0.5rem;
     right: 0.5rem;
     display: none;
+    font-size: 1.5em;
   }
 
-  ${media.tablet`
+  ${vars.media.tablet`
     display: ${props => props.isOpened ? 'flex' : 'none'};
     .button-close {
       display: block;
@@ -82,9 +56,11 @@ export const HeaderWrapper = styled.div`
   align-items: center;
   justify-content: flex-end;
   position: fixed;
+  top: 0;
   width: 100%;
-  background-color: ${gray3};
-  height: 50px;
+  background-color: ${vars.gray3};
+  height: ${vars.headerHeight};
+  z-index: 1;
 
   > * {
     margin-right: 0.5rem;
@@ -94,30 +70,30 @@ export const HeaderWrapper = styled.div`
     font-size: 1.5em;
     position: absolute;
     left: 0.75rem;
-    ${media.tablet`
+    line-height: ${vars.headerHeight};
+    ${vars.media.tablet`
       display: ${props => props.isSidebarOpened ? 'none' : 'block'};
     `}
   }
 `
 export const DataWrapper = styled.div`
-  margin-top: ${headerHeight};
-  width: 100%;
-  margin-left: ${sidebarWidth};
+  z-index: 0;
+  margin-left: ${vars.sidebarWidth};
 
   td {
     word-break: normal !important;
   }
 
-  ${media.tablet`
+  ${vars.media.tablet`
     margin-left: 0;
     `}
 
   .hide-gt-desktop {
-    ${media.desktop`display:none;`}
+    ${vars.media.desktop`display:none;`}
   }
 
   .hide-phone {
-    ${media.phone`display:none;`}
+    ${vars.media.phone`display:none;`}
   }
 `
 export const FilterWrapper = styled.div`

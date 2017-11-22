@@ -21,7 +21,7 @@ Url query parameters are kept in the "ISSUES" state in its original shape and ar
 ## Styles
 I have chosen ["Styled Components"](https://www.styled-components.com/) as a css preprocessor. I was eager to test this library as its authors claim that their library provides all the css capabilities and more transparent integration with react components.
 
-All layout positioning styles have been developed by me. Table and input components come from the ["antd"](https://ant.design/) library. The design of the app is responsive and has been tested on Safari (macOS, iOS), Chrome (macOS, Android) and Firefox. 
+All layout positioning styles have been developed by me. Table and input components come from the ["antd"](https://ant.design/) library. The design of the app is responsive and has been tested on desktop Safari, Chrome and Firefox. 
 
 ## Tests
 In order to present the proposed test strategy, I have written 1) the unit tests for the "thunk" function and 2) the Snapshot and Enzyme UI tests for one of the UI components. 

@@ -4,7 +4,7 @@ import { Header } from './header'
 import { connect } from 'react-redux'
 import { optionsSelector, selectedFiltersSelector } from './board.selectors'
 import { redirect } from 'redux-first-router'
-import { Sidebar, Wrapper, DataWrapper, TagListWrapper, User, ColumnInfoWrapper } from './styled'
+import { Sidebar, ContentWrapper, DataWrapper, TagListWrapper, User, ColumnInfoWrapper } from './styled'
 import { FilterForm } from './filterForm'
 import { Table, Tag, Avatar, Icon } from 'antd'
 import moment from 'moment'
@@ -75,7 +75,7 @@ export const BoardComponent = (props) => {
         </TagListWrapper>)
     }
   ]
-  return <Wrapper>
+  return <ContentWrapper>
     <DataWrapper>
       <Table
         columns={columns}
@@ -96,7 +96,7 @@ export const BoardComponent = (props) => {
         filterChangedHandler={props.filterChangedHandler}
         filtersApplyHandler={() => props.filtersApplyHandler(props.query)} />
     </Sidebar>
-  </Wrapper>
+  </ContentWrapper>
 }
 
 const mapStateToProps = (state) => ({

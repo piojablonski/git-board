@@ -1,15 +1,16 @@
 import { injectGlobal } from 'styled-components'
+import * as vars from './variables'
 
 injectGlobal`
-
-  body {
-    margin: 0;
-    padding: 0;
+  html,
+  body,
+  #root {
     font-family: sans-serif;
     height: 100%;
+    overflow: hidden;
   }
 
-  #root {
-    height: 100%;
+  body {
+    padding-top: ${vars.headerHeight} !important;
   }
 `
