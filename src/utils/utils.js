@@ -1,5 +1,6 @@
-import { redirect } from 'redux-first-router'
+import { setKind, redirect } from 'redux-first-router'
 
 export const navigate = (type, query) => {
-  return redirect({ type, meta: { query } })
+  const result = setKind(redirect({ type, meta: { query } }), 'push')
+  return result
 }

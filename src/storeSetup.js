@@ -10,7 +10,7 @@ import { boardThunk } from './components/board/thunk'
 // we need hash to run project on git pages
 const history = createHashHistory()
 
-const routesMap = {
+export const routesMap = {
   ISSUES: {
     path: '/',
     thunk: boardThunk

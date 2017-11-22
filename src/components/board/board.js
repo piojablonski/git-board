@@ -117,7 +117,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(issuesActions.filterChanged({ value, filterKey }))
   },
   filtersApplyHandler: query => {
-    dispatch(navigate('ISSUES', query))
+    dispatch(navigate('ISSUES', { ...query, page: '1' }))
   },
   toggleSidebar: () => { dispatch(issuesActions.toggleSidebar()) }
 })
