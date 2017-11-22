@@ -7,7 +7,7 @@ const toggleSidebar = createAction('issues/toggleSidebar')
 
 export const issuesActions = { receivedData, receivedOptions, filterChanged, toggleSidebar }
 
-const initialState = {
+export const initialState = {
   selectedFilters: {
     state: 'open',
     sort: 'created',

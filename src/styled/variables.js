@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components'
+import { css } from 'styled-components'
 
 export const gray1 = '#fbfbfb'
 export const gray3 = '#f5f5f5'

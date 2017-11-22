@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { redirect } from 'redux-first-router'
 import { issuesActions } from '../../reducers/issues.reducer'
 import { HeaderWrapper } from './headerWrapper'
 import { Button, Select, Icon } from 'antd'
@@ -55,7 +54,6 @@ const paginationInfoSelector = issuesState => {
   const res = ({
     hasPrevious: nPage > 1,
     previousPage: String(nPage - 1),
-    currentPage: page,
     lastPage,
     page,
     hasNext: nPage < nLastPage,

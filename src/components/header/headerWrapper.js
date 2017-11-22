@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import * as vars from '../../styled/variables'
 
 export const HeaderWrapper = styled.div`

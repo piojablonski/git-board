@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import * as vars from '../../../styled/variables'
 
 export const User = styled.div`
   display: flex;

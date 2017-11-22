@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import * as vars from '../../../styled/variables'
+
 export const ColumnInfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
