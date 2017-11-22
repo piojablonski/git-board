@@ -3,10 +3,10 @@ import { connect } from 'react-redux'
 import { Table, Tag, Avatar } from 'antd'
 import moment from 'moment'
 import {markdown} from 'markdown'
-import { DataWrapper } from './styled/dataWrapper'
-import { User } from './styled/user'
-import { ColumnInfoWrapper } from './styled/columnInfoWrapper'
-import { TagListWrapper } from './styled/tagListWrapper'
+import { DataWrapper } from '../styled/dataWrapper'
+import { User } from '../styled/user'
+import { ColumnInfoWrapper } from '../styled/columnInfoWrapper'
+import { TagListWrapper } from '../styled/tagListWrapper'
 
 const UserItem = ({ user }) => <User><Avatar size='small' src={user.avatar_url} /><span>{user.login}</span></User>
 const dateTimeFormatter = date => moment(date).format('L LT')

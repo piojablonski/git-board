@@ -7,9 +7,8 @@ import { issuesReducer } from './reducers/issues.reducer'
 import queryString from 'query-string'
 import { issuesPageThunk } from './components/issuesPage/thunk'
 import { appReducer } from './reducers/app.reducer'
-import { IssuesPage } from './components/issuesPage/issuesPage'
 
-// we need hash to run project on git pages
+// we need hash style navigation to run project on git pages
 const history = createHashHistory()
 
 export const routesMap = {

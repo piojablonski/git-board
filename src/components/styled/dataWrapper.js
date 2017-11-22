@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import * as vars from '../../../styled/variables'
+import * as vars from '../../styled/variables'
 
 export const DataWrapper = styled.div`
   z-index: 0;

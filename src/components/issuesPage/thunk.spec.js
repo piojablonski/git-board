@@ -1,4 +1,4 @@
-import { boardThunk } from './thunk'
+import { issuesPageThunk } from './thunk'
 import * as utils from './utils'
 import * as api from '../../api'
 import { initialIssuesState, issuesActions } from '../../reducers/issues.reducer'
@@ -11,7 +11,7 @@ describe('thunk', () => {
     jest.spyOn(utils, 'mapDataToOption').mockReturnValue(() => [1, 2])
     const receivedOptionsSpy = jest.spyOn(issuesActions, 'receivedOptions')
 
-    await boardThunk(dispatch, () => ({ app: appReducerInitialState, issues: initialIssuesState }))
+    await issuesPageThunk(dispatch, () => ({ app: appReducerInitialState, issues: initialIssuesState }))
 
     expect(receivedOptionsSpy).toHaveBeenCalledWith({
       gitRepo: 'create-react-app',
