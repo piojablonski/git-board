@@ -29,15 +29,16 @@ export const initialIssuesState = {
       direction: [{ value: 'desc', name: 'desc' }, { value: 'asc', name: 'asc' }]
     }
   },
+  data: undefined,
+
   lastPage: undefined,
-  isLoading: true,
-  issues: undefined
+  isLoading: true
 }
 
 export const issuesReducer = createReducer({
   [receivedData]: (state, payload) => ({
     ...state,
-    issues: payload.data,
+    data: payload.data,
     lastPage: payload.lastPage,
     isLoading: false
   }),

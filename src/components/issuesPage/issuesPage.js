@@ -25,20 +25,18 @@ export const IssuesPageComponent = (props) => {
 }
 
 const mapStateToProps = (state) => ({
-  options: optionsSelector(state),
+  options: optionsSelector('issues', state),
   selectedFilters: selectedFiltersSelector(state.issues),
-  query: state.issues.selectedFilters,
-  isSidebarOpened: state.app.isSidebarOpened,
-  repoTitle: `${state.app.gitUser}/${state.app.gitRepo}`
+  query: state.issues.selectedFilters
 })
+
 const mapDispatchToProps = (dispatch) => ({
   filterChangedHandler: (value, filterKey) => {
     dispatch(issuesActions.filterChanged({ value, filterKey }))
   },
   filtersApplyHandler: query => {
     dispatch(navigate('ISSUES', { ...query, page: '1' }))
-  },
-  toggleSidebar: () => { dispatch(appActions.toggleSidebar()) }
+  }
 })
 
 export const IssuesPage = connect(mapStateToProps, mapDispatchToProps)(IssuesPageComponent)

@@ -85,7 +85,7 @@ export const IssuesTableComponent = ({ data, isLoading }) => {
 }
 
 const mapStateToProps = (state) => ({
-  data: state.issues.issues,
+  data: state.issues.data,
   isLoading: state.issues.isLoading
 })
 

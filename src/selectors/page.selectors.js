@@ -1,7 +1,7 @@
 import moment from 'moment'
 
-export const selectedFiltersSelector = (issuesState) => {
-  const { selectedFilters: { since, ...sf } } = issuesState
+export const selectedFiltersSelector = (apiCategoryState) => {
+  const { selectedFilters: { since, ...sf } } = apiCategoryState
   const res = {
     ...sf,
     since: since ? moment(since) : undefined
@@ -9,19 +9,18 @@ export const selectedFiltersSelector = (issuesState) => {
   return res
 }
 
-export const optionsSelector = (reduxState) => {
-  const issuesState = reduxState.issues
-  const gitRepo = reduxState.app.gitRepo
-  if (!issuesState) {
+export const optionsSelector = (apiCategoryName, reduxState) => {
+  const { [apiCategoryName]: apiCategoryState, app: { gitRepo } } = reduxState
+  if (!apiCategoryState) {
     return undefined
   }
-  if (!issuesState.options[gitRepo]) {
+  if (!apiCategoryState.options[gitRepo]) {
     return undefined
   }
   const {
     static: { state, sort, direction, assignees: staticAssignees, milestones: initialMilestones },
     [gitRepo]: { labels, milestones, assignees }
-  } = issuesState.options
+  } = apiCategoryState.options
 
   const res = {
     state,
