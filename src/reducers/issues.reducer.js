@@ -1,7 +1,7 @@
 import { createAction, createReducer } from 'redux-act'
 
 const receivedOptions = createAction('issues/receivedOptions')
-const receivedData = createAction('issues/receivedData', (data, lastPage) => ({data, lastPage}))
+const receivedData = createAction('issues/receivedData', (data, lastPage) => ({ data, lastPage }))
 const filterChanged = createAction('issues/filterChanged')
 
 export const issuesActions = { receivedData, receivedOptions, filterChanged }
@@ -20,7 +20,7 @@ export const initialIssuesState = {
     per_page: '20'
   },
   options: {
-    static: {
+    initial: {
       perPage: ['20', '40', '60', '80', '100'],
       assignees: [{ value: 'none', name: 'none' }, { value: '*', name: 'any' }],
       milestones: [{ value: 'none', name: 'none' }, { value: '*', name: 'any' }],

@@ -36,7 +36,7 @@ export const HeaderComponent = ({ pagination, ...props }) => {
 const mapStateToProps = (state, ownProps) => {
   const categoryState = state[ownProps.apiCategory]
   return {
-    pageSizeOptions: categoryState.options.static.perPage,
+    pageSizeOptions: categoryState.options.initial.perPage,
     pagination: paginationInfoSelector(categoryState),
     selectedFilters: categoryState.selectedFilters,
     isSidebarOpened: state.app.isSidebarOpened,

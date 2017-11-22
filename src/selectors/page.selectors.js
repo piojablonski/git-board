@@ -18,7 +18,7 @@ export const optionsSelector = (apiCategoryName, reduxState) => {
     return undefined
   }
   const {
-    static: { state, sort, direction, assignees: staticAssignees, milestones: initialMilestones },
+    initial: { state, sort, direction, assignees: staticAssignees, milestones: initialMilestones },
     [gitRepo]: { labels, milestones, assignees }
   } = apiCategoryState.options
 
