@@ -1,6 +1,8 @@
 # Git Board
 
-[Demo](https://piojablonski.github.io/git-board)
++ [Demo atom](https://piojablonski.github.io/git-board)
++ [Demo create-react-app](https://piojablonski.github.io/git-board/#/facebookincubator/create-react-app)
+
 ## Usage
 
 + clone the github repository `git clone https://github.com/piojablonski/git-board.git`

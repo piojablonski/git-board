@@ -15,5 +15,10 @@ export const appReducer = createReducer({
   [toggleSidebar]: (state, payload) => ({
     ...state,
     isSidebarOpened: !state.isSidebarOpened
+  }),
+  ISSUES: (state, { gitRepo, gitUser }) => ({
+    ...state,
+    gitRepo,
+    gitUser
   })
 }, appReducerInitialState)

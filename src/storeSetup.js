@@ -1,4 +1,4 @@
-import { connectRoutes } from 'redux-first-router'
+import { connectRoutes, redirect } from 'redux-first-router';
 import { combineReducers, createStore, applyMiddleware } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { pageReducer } from './reducers/page.reducer'
@@ -12,8 +12,12 @@ import { appReducer } from './reducers/app.reducer'
 const history = createHashHistory()
 
 export const routesMap = {
-  ISSUES: {
+  DEFAULT: {
     path: '/',
+    thunk: async (dispatch, getState) => { dispatch(redirect({ type: 'ISSUES', payload: { gitUser: 'atom', gitRepo: 'atom' } })) }
+  },
+  ISSUES: {
+    path: '/:gitUser/:gitRepo',
     thunk: issuesPageThunk
   }
 }

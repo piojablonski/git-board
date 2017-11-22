@@ -8,10 +8,10 @@ const { Option } = Select
 
 export const HeaderComponent = ({ pagination, ...props }) => {
   const executeChange = (key) => (value) => {
-    props.filterChangeAndRedirect(props.routeType, props.selectedFilters, value, 'per_page', { page: 1 })
+    props.filterChangeAndRedirect(props.routeType, props.repoPayload, props.selectedFilters, value, 'per_page', { page: 1 })
   }
   const executeChangePage = ({ target: { value } }) => {
-    props.filterChangeAndRedirect(props.routeType, props.selectedFilters, value, 'page')
+    props.filterChangeAndRedirect(props.routeType, props.repoPayload, props.selectedFilters, value, 'page')
   }
 
   return (
@@ -40,12 +40,13 @@ const mapStateToProps = (state, ownProps) => {
     pagination: paginationInfoSelector(categoryState),
     selectedFilters: categoryState.selectedFilters,
     isSidebarOpened: state.app.isSidebarOpened,
-    routeType: state.location.type
+    routeType: state.location.type,
+    repoPayload: { gitUser: state.app.gitUser, gitRepo: state.app.gitRepo }
   }
 }
 const mapDispatchToProps = (dispatch) => ({
-  filterChangeAndRedirect: (routeType, query, value, filterKey, extraValues = {}) => {
-    dispatch(navigate(routeType, { ...query, ...extraValues, [filterKey]: value }))
+  filterChangeAndRedirect: (routeType, routePayload, query, value, filterKey, extraValues = {}) => {
+    dispatch(navigate(routeType, routePayload, { ...query, ...extraValues, [filterKey]: value }))
   },
   toggleSidebar: () => { dispatch(appActions.toggleSidebar()) }
 })
