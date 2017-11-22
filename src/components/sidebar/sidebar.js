@@ -1,36 +1,23 @@
-import styled from 'styled-components'
-import * as vars from '../..//styled/variables'
+import React from 'react'
+import { appActions } from '../../reducers/app.reducer'
+import { connect } from 'react-redux'
+import { Icon } from 'antd'
+import { SidebarWrapper } from './sidebarWrapper'
 
-export const Sidebar = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: ${vars.sidebarWidth};
-  top: 0;
-  bottom: 0;
-  overflow-y: auto;
-  overflow-x: hidden;
-  -webkit-overflow-scrolling: touch;
-  background-color: ${vars.gray5};
-  position: fixed;
-  padding-top: 1rem;
-  z-index: 2;
+export const SidebarComponent = (props) => (
+  <SidebarWrapper isOpened={props.isSidebarOpened} >
+    <Icon className='button-close' type='close' onClick={props.toggleSidebar} />
+    <h3>{props.repoTitle}</h3>
+    {props.children}
+  </SidebarWrapper>
+)
 
-  .button-close {
-    position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
-    display: none;
-    font-size: 1.5em;
-  }
+const mapStateToProps = (state) => ({
+  isSidebarOpened: state.app.isSidebarOpened,
+  repoTitle: `${state.app.gitUser}/${state.app.gitRepo}`
+})
+const mapDispatchToProps = (dispatch) => ({
+  toggleSidebar: () => { dispatch(appActions.toggleSidebar()) }
+})
 
-  ${vars.media.tablet`
-    display: ${props => props.isOpened ? 'flex' : 'none'};
-    .button-close {
-      display: block;
-    }
-  `}
-
-  > h3 {
-    margin-left: 1rem;
-  }
-`
+export const Sidebar = connect(mapStateToProps, mapDispatchToProps)(SidebarComponent)

@@ -1,10 +1,10 @@
 import React from 'react'
 import { Select, Input, Button, Radio, DatePicker } from 'antd'
-import { FilterWrapper } from './filterWrapper'
+import { FilterWrapper } from './styled/filterWrapper'
 const { Option } = Select
 const { Group: RadioGroup } = Radio
 
-export const FilterForm = ({ options, selectedFilters, filterChangedHandler, filtersApplyHandler }) => {
+export const IssuesFilters = ({ options, selectedFilters, filterChangedHandler, filtersApplyHandler }) => {
   if (!options) {
     return null
   }

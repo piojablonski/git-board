@@ -4,21 +4,18 @@ import React from 'react'
 import { Header } from '../header/header'
 import { connect } from 'react-redux'
 import { optionsSelector, selectedFiltersSelector } from './board.selectors'
-import { FilterForm } from '../filterForm/filterForm'
-import { Icon } from 'antd'
+import { IssuesFilters } from './issuesFilters'
 import { navigate } from '../../utils/utils'
-import { Sidebar } from '../sidebar/sidebar'
 import { PageWrapper } from './styled/pageWrapper'
 import { IssuesDataTable } from './issuesDataTable'
+import { Sidebar } from '../sidebar/sidebar'
 
-export const BoardComponent = (props) => {
+export const IssuesPageComponent = (props) => {
   return <PageWrapper>
     <IssuesDataTable />
     <Header apiCategory='issues' />
-    <Sidebar isOpened={props.isSidebarOpened} >
-      <Icon className='button-close' type='close' onClick={props.toggleSidebar} />
-      <h3>{props.repoTitle}</h3>
-      <FilterForm
+    <Sidebar>
+      <IssuesFilters
         options={props.options}
         selectedFilters={props.selectedFilters}
         filterChangedHandler={props.filterChangedHandler}
@@ -44,4 +41,4 @@ const mapDispatchToProps = (dispatch) => ({
   toggleSidebar: () => { dispatch(appActions.toggleSidebar()) }
 })
 
-export const Board = connect(mapStateToProps, mapDispatchToProps)(BoardComponent)
+export const IssuesPage = connect(mapStateToProps, mapDispatchToProps)(IssuesPageComponent)

@@ -2,7 +2,7 @@ import { issuesActions } from '../../reducers/issues.reducer'
 import { get } from '../../api'
 import { mapDataToOption, sanitizeSelectedFilters, readPaginationData } from './utils'
 
-export const boardThunk = async (dispatch, getState) => {
+export const issuesPageThunk = async (dispatch, getState) => {
   const { app: { gitRepo, gitUser }, issues: { options, selectedFilters } } = getState()
   const shouldLoadOptions = !options[gitRepo]
   const getData = get(gitUser, gitRepo)
