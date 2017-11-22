@@ -8,11 +8,11 @@ import { FilterForm } from '../filterForm/filterForm'
 import { Icon } from 'antd'
 import { navigate } from '../../utils/utils'
 import { Sidebar } from '../sidebar/sidebar'
-import { BoardWrapper } from './styled/boardWrapper'
+import { PageWrapper } from './styled/pageWrapper'
 import { IssuesDataTable } from './issuesDataTable'
 
 export const BoardComponent = (props) => {
-  return <BoardWrapper>
+  return <PageWrapper>
     <IssuesDataTable />
     <Header apiCategory='issues' />
     <Sidebar isOpened={props.isSidebarOpened} >
@@ -24,7 +24,7 @@ export const BoardComponent = (props) => {
         filterChangedHandler={props.filterChangedHandler}
         filtersApplyHandler={() => props.filtersApplyHandler(props.query)} />
     </Sidebar>
-  </BoardWrapper>
+  </PageWrapper>
 }
 
 const mapStateToProps = (state) => ({

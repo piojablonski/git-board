@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import * as vars from '../../../styled/variables'
 
-export const BoardWrapper = styled.div`
+export const PageWrapper = styled.div`
   display: block;
   height: 100%;
   overflow-x: hidden;
