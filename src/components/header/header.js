@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { redirect } from 'redux-first-router'
 import { issuesActions } from '../../reducers/issues.reducer'
-import { HeaderWrapper } from './styled'
+import { HeaderWrapper } from './headerWrapper'
 import { Button, Select, Icon } from 'antd'
 import { navigate } from '../../utils/utils'
 const { Option } = Select

@@ -1,15 +1,20 @@
 import { issuesActions } from '../../reducers/issues.reducer'
 import React from 'react'
-import { Header } from './header'
+import { Header } from '../header/header'
 import { connect } from 'react-redux'
 import { optionsSelector, selectedFiltersSelector } from './board.selectors'
 import { redirect } from 'redux-first-router'
-import { Sidebar, ContentWrapper, DataWrapper, TagListWrapper, User, ColumnInfoWrapper } from './styled'
-import { FilterForm } from './filterForm'
+import { FilterForm } from '../filterForm/filterForm'
 import { Table, Tag, Avatar, Icon } from 'antd'
 import moment from 'moment'
 import { navigate } from '../../utils/utils'
 import {markdown} from 'markdown'
+import { Sidebar } from '../sidebar/sidebar'
+import { BoardWrapper } from './styled/boardWrapper'
+import { DataWrapper } from './styled/dataWrapper'
+import { User } from './styled/user'
+import { ColumnInfoWrapper } from './styled/columnInfoWrapper'
+import { TagListWrapper } from './styled/tagListWrapper'
 
 const UserItem = ({ user }) => <User><Avatar size='small' src={user.avatar_url} /><span>{user.login}</span></User>
 const dateTimeFormatter = date => moment(date).format('L LT')
@@ -75,7 +80,7 @@ export const BoardComponent = (props) => {
         </TagListWrapper>)
     }
   ]
-  return <ContentWrapper>
+  return <BoardWrapper>
     <DataWrapper>
       <Table
         columns={columns}
@@ -96,7 +101,7 @@ export const BoardComponent = (props) => {
         filterChangedHandler={props.filterChangedHandler}
         filtersApplyHandler={() => props.filtersApplyHandler(props.query)} />
     </Sidebar>
-  </ContentWrapper>
+  </BoardWrapper>
 }
 
 const mapStateToProps = (state) => ({
