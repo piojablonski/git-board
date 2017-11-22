@@ -1,4 +1,5 @@
 import { issuesActions } from '../../reducers/issues.reducer'
+import { appActions } from '../../reducers/app.reducer'
 import React from 'react'
 import { Header } from '../header/header'
 import { connect } from 'react-redux'
@@ -8,12 +9,12 @@ import { Icon } from 'antd'
 import { navigate } from '../../utils/utils'
 import { Sidebar } from '../sidebar/sidebar'
 import { BoardWrapper } from './styled/boardWrapper'
-import { DataTable } from './dataTable'
+import { IssuesDataTable } from './issuesDataTable'
 
 export const BoardComponent = (props) => {
   return <BoardWrapper>
-    <DataTable />
-    <Header />
+    <IssuesDataTable />
+    <Header apiCategory='issues' />
     <Sidebar isOpened={props.isSidebarOpened} >
       <Icon className='button-close' type='close' onClick={props.toggleSidebar} />
       <h3>{props.repoTitle}</h3>
@@ -27,11 +28,11 @@ export const BoardComponent = (props) => {
 }
 
 const mapStateToProps = (state) => ({
-  options: optionsSelector(state.issues),
+  options: optionsSelector(state),
   selectedFilters: selectedFiltersSelector(state.issues),
   query: state.issues.selectedFilters,
-  isSidebarOpened: state.issues.isSidebarOpened,
-  repoTitle: `${state.issues.gitUser}/${state.issues.gitRepo}`
+  isSidebarOpened: state.app.isSidebarOpened,
+  repoTitle: `${state.app.gitUser}/${state.app.gitRepo}`
 })
 const mapDispatchToProps = (dispatch) => ({
   filterChangedHandler: (value, filterKey) => {
@@ -40,7 +41,7 @@ const mapDispatchToProps = (dispatch) => ({
   filtersApplyHandler: query => {
     dispatch(navigate('ISSUES', { ...query, page: '1' }))
   },
-  toggleSidebar: () => { dispatch(issuesActions.toggleSidebar()) }
+  toggleSidebar: () => { dispatch(appActions.toggleSidebar()) }
 })
 
 export const Board = connect(mapStateToProps, mapDispatchToProps)(BoardComponent)

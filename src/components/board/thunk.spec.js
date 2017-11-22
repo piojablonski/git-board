@@ -1,7 +1,8 @@
 import { boardThunk } from './thunk'
 import * as utils from './utils'
 import * as api from '../../api'
-import { initialState, issuesActions } from '../../reducers/issues.reducer'
+import { initialIssuesState, issuesActions } from '../../reducers/issues.reducer'
+import { appReducerInitialState } from '../../reducers/app.reducer'
 
 describe('thunk', () => {
   it('should fetch options and dispatch receivedOptions action', async () => {
@@ -10,7 +11,7 @@ describe('thunk', () => {
     jest.spyOn(utils, 'mapDataToOption').mockReturnValue(() => [1, 2])
     const receivedOptionsSpy = jest.spyOn(issuesActions, 'receivedOptions')
 
-    await boardThunk(dispatch, () => ({ issues: initialState }))
+    await boardThunk(dispatch, () => ({ app: appReducerInitialState, issues: initialIssuesState }))
 
     expect(receivedOptionsSpy).toHaveBeenCalledWith({
       gitRepo: 'create-react-app',

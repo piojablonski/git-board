@@ -11,7 +11,7 @@ import { TagListWrapper } from './styled/tagListWrapper'
 const UserItem = ({ user }) => <User><Avatar size='small' src={user.avatar_url} /><span>{user.login}</span></User>
 const dateTimeFormatter = date => moment(date).format('L LT')
 
-export const DataTableComponent = ({ data, isLoading }) => {
+export const IssuesTableComponent = ({ data, isLoading }) => {
   const columns = [
     {
       title: 'Title',
@@ -89,4 +89,4 @@ const mapStateToProps = (state) => ({
   isLoading: state.issues.isLoading
 })
 
-export const DataTable = connect(mapStateToProps)(DataTableComponent)
+export const IssuesDataTable = connect(mapStateToProps)(IssuesTableComponent)

@@ -6,6 +6,7 @@ import { createHashHistory } from 'history'
 import { issuesReducer } from './reducers/issues.reducer'
 import queryString from 'query-string'
 import { boardThunk } from './components/board/thunk'
+import { appReducer } from './reducers/app.reducer';
 
 // we need hash to run project on git pages
 const history = createHashHistory()
@@ -24,7 +25,8 @@ const { reducer, middleware, enhancer } = connectRoutes(history, routesMap, {
 const rootReducer = combineReducers({
   location: reducer,
   page: pageReducer,
-  issues: issuesReducer
+  issues: issuesReducer,
+  app: appReducer
 })
 
 const middlewares = applyMiddleware(middleware)

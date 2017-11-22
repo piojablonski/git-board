@@ -3,7 +3,7 @@ import React from 'react'
 import { HeaderComponent } from './header'
 import { mount, shallow } from 'enzyme'
 import { matchSnapshot } from '../../utils/testUtils'
-import { initialState } from '../../reducers/issues.reducer'
+import { initialIssuesState } from '../../reducers/issues.reducer'
 import { Button } from 'antd'
 
 const defaultProps = () => ({
@@ -17,10 +17,11 @@ const defaultProps = () => ({
     hasNext: true,
     perPage: '20'
   },
-  selectedFilters: initialState.selectedFilters,
+  selectedFilters: initialIssuesState.selectedFilters,
   isSidebarOpened: false,
   filterChangeAndRedirect: jest.fn(),
-  toggleSidebar: jest.fn()
+  toggleSidebar: jest.fn(),
+  routeType: 'ISSUE'
 
 })
 

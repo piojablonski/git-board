@@ -9,16 +9,18 @@ export const selectedFiltersSelector = (issuesState) => {
   return res
 }
 
-export const optionsSelector = (issuesState) => {
+export const optionsSelector = (reduxState) => {
+  const issuesState = reduxState.issues
+  const gitRepo = reduxState.app.gitRepo
   if (!issuesState) {
     return undefined
   }
-  if (!issuesState.options[issuesState.gitRepo]) {
+  if (!issuesState.options[gitRepo]) {
     return undefined
   }
   const {
     static: { state, sort, direction, assignees: staticAssignees, milestones: initialMilestones },
-    [issuesState.gitRepo]: { labels, milestones, assignees }
+    [gitRepo]: { labels, milestones, assignees }
   } = issuesState.options
 
   const res = {

@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { issuesActions } from '../../reducers/issues.reducer'
+import { appActions } from '../../reducers/app.reducer'
 import { HeaderWrapper } from './headerWrapper'
 import { Button, Select, Icon } from 'antd'
 import { navigate } from '../../utils/utils'
@@ -8,10 +8,10 @@ const { Option } = Select
 
 export const HeaderComponent = ({ pagination, ...props }) => {
   const executeChange = (key) => (value) => {
-    props.filterChangeAndRedirect(props.selectedFilters, value, 'per_page', { page: 1 })
+    props.filterChangeAndRedirect(props.routeType, props.selectedFilters, value, 'per_page', { page: 1 })
   }
   const executeChangePage = ({ target: { value } }) => {
-    props.filterChangeAndRedirect(props.selectedFilters, value, 'page')
+    props.filterChangeAndRedirect(props.routeType, props.selectedFilters, value, 'page')
   }
 
   return (
@@ -33,18 +33,21 @@ export const HeaderComponent = ({ pagination, ...props }) => {
   )
 }
 
-const mapStateToProps = (state) => ({
-  pageSizeOptions: state.issues.options.static.perPage,
-  pagination: paginationInfoSelector(state.issues),
-  selectedFilters: state.issues.selectedFilters,
-  isSidebarOpened: state.issues.isSidebarOpened
-
-})
+const mapStateToProps = (state, ownProps) => {
+  const categoryState = state[ownProps.apiCategory]
+  return {
+    pageSizeOptions: categoryState.options.static.perPage,
+    pagination: paginationInfoSelector(categoryState),
+    selectedFilters: categoryState.selectedFilters,
+    isSidebarOpened: state.app.isSidebarOpened,
+    routeType: state.location.type
+  }
+}
 const mapDispatchToProps = (dispatch) => ({
-  filterChangeAndRedirect: (query, value, filterKey, extraValues = {}) => {
-    dispatch(navigate('ISSUES', { ...query, ...extraValues, [filterKey]: value }))
+  filterChangeAndRedirect: (routeType, query, value, filterKey, extraValues = {}) => {
+    dispatch(navigate(routeType, { ...query, ...extraValues, [filterKey]: value }))
   },
-  toggleSidebar: () => { dispatch(issuesActions.toggleSidebar()) }
+  toggleSidebar: () => { dispatch(appActions.toggleSidebar()) }
 })
 
 const paginationInfoSelector = issuesState => {
