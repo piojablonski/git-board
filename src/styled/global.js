@@ -10,7 +10,7 @@ injectGlobal`
     overflow: hidden;
   }
 
-  body {
+  /* body {
     padding-top: ${vars.headerHeight} !important;
-  }
+  } */
 `

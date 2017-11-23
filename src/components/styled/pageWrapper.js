@@ -4,6 +4,7 @@ import * as vars from '../../styled/variables'
 export const PageWrapper = styled.div`
   display: block;
   height: 100%;
+  padding-top: ${vars.headerHeight};
   overflow-x: hidden;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
