@@ -20,6 +20,8 @@ export const issuesPageThunk = async (dispatch, getState) => {
       })
       const action = issuesActions.receivedOptions({ gitRepo, options })
       dispatch(action)
+    }).catch(e => {
+      console.error(e)
     })
   }
 
@@ -30,9 +32,9 @@ export const issuesPageThunk = async (dispatch, getState) => {
       const lastPage = readPaginationData(response)
       dispatch(issuesActions.receivedData(response.data, lastPage || selectedFilters.page))
     } else {
-      throw response.error
+      throw response
     }
-  }).catch(() => {
-    // dispatch(redirect({ type: NOT_FOUND }))
+  }).catch((e) => {
+    console.error(e)
   })
 }
