@@ -1,9 +1,9 @@
 import React from 'react'
-import { Board } from './board/board'
+import { IssuesPage } from './issuesPage/issuesPage'
 import { FourOFour } from './fourOFour'
 
 const components = {
-  Board,
+  IssuesPage,
   FourOFour
 }
 

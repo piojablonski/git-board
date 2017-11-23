@@ -4,18 +4,23 @@
   "private": true,
   "homepage": "https://piojablonski.github.io/git-board",
   "dependencies": {
+    "antd": "^2.13.10",
     "axios": "^0.17.1",
     "history": "^4.7.2",
+    "markdown": "^0.5.0",
+    "moment": "^2.19.2",
+    "prop-types": "^15.6.0",
     "query-string": "^5.0.1",
-    "react": "^16.1.1",
-    "react-dom": "^16.1.1",
+    "react": "15.6.2",
+    "react-dom": "15.6.2",
     "react-redux": "^5.0.6",
     "react-scripts": "1.0.17",
     "redux": "^3.7.2",
     "redux-act": "^1.5.0",
     "redux-devtools-extension": "^2.13.2",
     "redux-first-router": "^0.0.16-next",
-    "redux-first-router-link": "^1.4.2"
+    "redux-first-router-link": "^1.4.2",
+    "styled-components": "next"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -23,11 +28,12 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "stylelint": "stylelint 'src/**/*.js'"
   },
   "devDependencies": {
     "enzyme": "^3.2.0",
-    "enzyme-adapter-react-16": "^1.1.0",
+    "enzyme-adapter-react-15": "^1.0.5",
     "enzyme-to-json": "^3.2.2",
     "eslint": "^4.11.0",
     "eslint-config-standard": "^10.2.1",
@@ -36,6 +42,15 @@
     "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-react": "^7.4.0",
     "eslint-plugin-standard": "^3.0.1",
-    "gh-pages": "^1.0.0"
+    "gh-pages": "^1.0.0",
+    "jest-styled-components": "^4.9.0",
+    "react-test-renderer": "^15.1.1",
+    "stylelint": "^8.2.0",
+    "stylelint-config-standard": "^17.0.0",
+    "stylelint-config-styled-components": "^0.1.1",
+    "stylelint-processor-styled-components": "^1.0.0"
+  },
+  "jest": {
+    "snapshotSerializers": ["enzyme-to-json/serializer"]
   }
 }

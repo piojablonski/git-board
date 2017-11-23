@@ -1,0 +1,209 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HeaderComponent should have both buttons enabled 1`] = `
+<styled.div
+  isSidebarOpened={false}
+>
+  <Icon
+    className="menu-icon"
+    onClick={[Function]}
+    type="menu-unfold"
+  />
+  <Button
+    disabled={false}
+    ghost={false}
+    loading={false}
+    onClick={[Function]}
+    prefixCls="ant-btn"
+    type="default"
+    value="1"
+  >
+    <Icon
+      type="left"
+    />
+    Prev
+  </Button>
+  <span>
+    2 / 4
+  </span>
+  <Button
+    disabled={false}
+    ghost={false}
+    loading={false}
+    onClick={[Function]}
+    prefixCls="ant-btn"
+    type="default"
+    value="3"
+  >
+    Next
+    <Icon
+      type="right"
+    />
+  </Button>
+  <Select
+    choiceTransitionName="zoom"
+    onChange={[Function]}
+    prefixCls="ant-select"
+    showSearch={false}
+    transitionName="slide-up"
+    value="20"
+  >
+    <Option
+      key="10"
+      value="10"
+    >
+      10
+    </Option>
+    <Option
+      key="20"
+      value="20"
+    >
+      20
+    </Option>
+    <Option
+      key="30"
+      value="30"
+    >
+      30
+    </Option>
+  </Select>
+</styled.div>
+`;
+
+exports[`HeaderComponent should have next button disabled 1`] = `
+<styled.div
+  isSidebarOpened={false}
+>
+  <Icon
+    className="menu-icon"
+    onClick={[Function]}
+    type="menu-unfold"
+  />
+  <Button
+    disabled={false}
+    ghost={false}
+    loading={false}
+    onClick={[Function]}
+    prefixCls="ant-btn"
+    type="default"
+    value="1"
+  >
+    <Icon
+      type="left"
+    />
+    Prev
+  </Button>
+  <span>
+    2 / 2
+  </span>
+  <Button
+    disabled={true}
+    ghost={false}
+    loading={false}
+    onClick={[Function]}
+    prefixCls="ant-btn"
+    type="default"
+  >
+    Next
+    <Icon
+      type="right"
+    />
+  </Button>
+  <Select
+    choiceTransitionName="zoom"
+    onChange={[Function]}
+    prefixCls="ant-select"
+    showSearch={false}
+    transitionName="slide-up"
+    value="20"
+  >
+    <Option
+      key="10"
+      value="10"
+    >
+      10
+    </Option>
+    <Option
+      key="20"
+      value="20"
+    >
+      20
+    </Option>
+    <Option
+      key="30"
+      value="30"
+    >
+      30
+    </Option>
+  </Select>
+</styled.div>
+`;
+
+exports[`HeaderComponent should have previous button disabled 1`] = `
+<styled.div
+  isSidebarOpened={false}
+>
+  <Icon
+    className="menu-icon"
+    onClick={[Function]}
+    type="menu-unfold"
+  />
+  <Button
+    disabled={true}
+    ghost={false}
+    loading={false}
+    onClick={[Function]}
+    prefixCls="ant-btn"
+    type="default"
+  >
+    <Icon
+      type="left"
+    />
+    Prev
+  </Button>
+  <span>
+    1 / 3
+  </span>
+  <Button
+    disabled={false}
+    ghost={false}
+    loading={false}
+    onClick={[Function]}
+    prefixCls="ant-btn"
+    type="default"
+    value="2"
+  >
+    Next
+    <Icon
+      type="right"
+    />
+  </Button>
+  <Select
+    choiceTransitionName="zoom"
+    onChange={[Function]}
+    prefixCls="ant-select"
+    showSearch={false}
+    transitionName="slide-up"
+    value="20"
+  >
+    <Option
+      key="10"
+      value="10"
+    >
+      10
+    </Option>
+    <Option
+      key="20"
+      value="20"
+    >
+      20
+    </Option>
+    <Option
+      key="30"
+      value="30"
+    >
+      30
+    </Option>
+  </Select>
+</styled.div>
+`;
