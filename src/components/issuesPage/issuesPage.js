@@ -1,12 +1,11 @@
 import { issuesActions } from '../../reducers/issues.reducer'
-import { appActions } from '../../reducers/app.reducer'
 import React from 'react'
 import { Header } from '../header/header'
 import { connect } from 'react-redux'
 import { optionsSelector, selectedFiltersSelector } from '../../selectors/page.selectors'
 import { IssuesFilters } from './issuesFilters'
 import { navigate } from '../../utils/utils'
-import { PageWrapper } from './styled/pageWrapper'
+import { PageWrapper } from '../styled/pageWrapper'
 import { IssuesDataTable } from './issuesDataTable'
 import { Sidebar } from '../sidebar/sidebar'
 

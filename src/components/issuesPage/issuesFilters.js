@@ -1,6 +1,6 @@
 import React from 'react'
 import { Select, Input, Button, Radio, DatePicker } from 'antd'
-import { FilterWrapper } from './styled/filterWrapper'
+import { FilterWrapper } from '../styled/filterWrapper'
 const { Option } = Select
 const { Group: RadioGroup } = Radio
 
